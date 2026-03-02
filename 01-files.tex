@@ -1,0 +1,294 @@
+% !TeX root = bash.tex
+\section{I. File Tree}
+\begin{frame}[fragile]
+\frametitle{Everything is a "file"}
+File basically means something that could be read or written. These are all treated as files:
+\begin{itemize}
+    \item \tt{a}
+    \item \tt{.a} (Hidden)
+    \item \tt{a.jpg}
+    \item \tt{/dev/sda} (hardware)
+    \item \tt{/dev/null} (trash bucket)
+\end{itemize}
+
+\begin{block}{Note}
+    The dot and suffix are part of the filename.
+    \newline
+    Filenames are case \textbf{sensitive} in linux but case \textbf{insensitive} in macOS.
+    \newline
+    \textbf{Avoid spaces and special characters} (except \verb|._-|).
+    If you have to, surround filename in quotes:
+    \tt{`Lab Report (3).docx'}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Directories}
+Each of these is a \textbf{directory} (``dir'' for short):
+\begin{itemize}
+    \item \tt{01-files/}
+    \item \tt{01-files/c/}
+    \item \tt{01-files/.c/} (Hidden dir)
+\end{itemize}
+
+\begin{block}{Convention}
+    For clarity, we add a slash (\tt{/}) to the end of a directory in the
+    slides. However, in reality it often makes no difference.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{File tree}
+Think of any directory as a tree.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[fill=blue!20,rounded corners]
+        \tikzstyle{edge from parent}=[blue!50,thick,draw]
+        \node {01-files/}[edge from parent fork down]
+            child {node {a.txt}}
+            child {
+                node {c/}
+                    child {node {subdir/}}
+            }
+            child {node {.c/}};
+
+    \end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Paths}
+    dir/subdir1/subdir2/file = \textbf{path}.
+\footnote{At least in the scope of this workshop.}
+\newline \newline
+
+\begin{itemize}
+    \item we use path to specify a file \& navigate the file system
+    \item working directory is the path that you are currently in the file system
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Absolute \& relative paths}
+\begin{itemize}
+    \item \textbf{/} is the \textbf{root} directory of the file system. Paths beginning with \tt{/} are absolute: \tt{/usr/bin/cat}
+    \item Otherwise it is relative: \tt{01-files/} (relative to working directory)
+\end{itemize}
+
+
+\begin{example}
+    Your working directory: \tt{/home/you/} \newline
+    Absolute path: \tt{/home/you/bash-workshop/01-files/} \newline
+    Relative path(the same): \tt{bash-workshop/01-files/} \newline
+\end{example}
+\end{frame}
+
+\begin{frame}
+\frametitle{\tt{.} and \tt{..}}
+Inside every dir\footnote{Except \tt{/}} there are two special dirs:
+\begin{itemize}
+    \item \tt{./} — current dir
+    \item \tt{../} — parent dir
+\end{itemize}
+
+You can use them in relative paths.
+\begin{example}
+    Your location: \tt{/home/you/} \newline
+    The followings are equal:
+    \begin{itemize}
+        \item \tt{./project/01-files}
+        \item \tt{project/../project/01-files}
+    \end{itemize}
+\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Some handy tools/commands}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{External tools come with OS}:
+\begin{itemize}
+    \item \tt{cp} — copy files
+    \item \tt{mv} — move/rename files
+    \item \tt{rm} — remove files
+    \item \tt{ls} — list directory contents
+    \item \tt{cat} — print file contents
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\textbf{Bash built-in commands}:
+\begin{itemize}
+    \item \tt{pwd} — print working directory
+    \item \tt{cd} — change directory
+    \item \tt{echo} — print text
+    \item \tt{type} — show command type
+\end{itemize}
+\end{column}
+\end{columns}
+\vspace{0.5em}
+\begin{block}{Tip}
+    Use \tt{type <cmd>} to check if a command is built-in or external.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\tt{cat}: Printing a file}
+Open a bash terminal inside \tt{01-files/}, then:
+\begin{lstlisting}[language=bash]
+$ cat a
+$ cat .a
+$ cat a.txt
+\end{lstlisting}
+\begin{block}{Explanation}
+    \tt{cat} is short for ``concatenate'' (to join together) but it's
+    mostly used to print files.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\tt{cp, mv, rm}: Relocating a file}
+Try this inside \tt{01-files/}:
+\begin{lstlisting}[language=bash]
+$ ls
+$ cp a b
+$ ls
+$ mv a.txt b.txt
+$ ls
+$ rm b
+$ ls
+\end{lstlisting}
+\begin{block}{Explanation}
+    \begin{itemize}
+        \item \textbf{ls} lists files
+        \item \textbf{cp} copies \tt{a} into a file called \tt{b}
+        \item \textbf{mv} moves \tt{a.txt} into a file called \tt{b.txt}
+        \item \textbf{rm} removes \tt{b} (\textbf{Caution! Irreversible})
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\tt{cp, mv}: Overwriting and renaming}
+When the destination does not exist, \tt{cp} and \tt{mv} simply create
+that file. \textbf{Otherwise, it is destroyed and overwritten.}
+\newline \newline
+Try this inside \tt{01-files/}:
+\begin{lstlisting}[language=bash]
+$ cp a b      # creates b
+$ cat a
+$ cp a a.txt  # overwrites a.txt
+$ cat a.txt
+\end{lstlisting}
+
+Renaming a file in bash works like so:
+\begin{lstlisting}[language=bash]
+$ mv b newb
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{\tt{cd, pwd}: Changing directory}
+Try this inside \tt{01-files/}:
+\begin{lstlisting}[language=bash]
+$ cd c/
+$ pwd
+$ cd ../
+$ pwd
+\end{lstlisting}
+\begin{block}{Explanation}
+    \begin{itemize}
+        \item \tt{cd}: ``change directory''
+        \item \tt{pwd}: ``print working directory''
+        \item \tt{../} means ``parent directory''
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\tt{ls}: Listing directories}
+Try this inside \tt{01-files/}:
+\begin{lstlisting}[language=bash]
+$ ls
+$ ls -a
+$ ls -l
+$ ls -la
+$ ls c/
+\end{lstlisting}
+\begin{block}{Explanation}
+    \begin{itemize}
+        \item \tt{ls}: ``list''
+        \item \tt{-la} = \tt{-l} + \tt{-a}. Sth like this are called a `flag'
+        \item \tt{-a} is short for \tt{--all}
+        \item \tt{-l} enables long listing format
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\tt{mkdir, rm}: Creating and deleting directories}
+Try this inside \tt{01-files/}:
+\begin{lstlisting}[language=bash]
+$ mkdir dir/
+$ rm -r dir/
+$ mkdir -p dir/subdir/
+$ ls dir/
+\end{lstlisting}
+\begin{block}{Explanation}
+    \begin{itemize}
+        \item \tt{mkdir}: ``make directory''
+        \item \tt{-r} is short for \tt{--recursive}
+        \item \tt{-p} is short for \tt{--parents}. It makes sure the parent directory exists.  
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\tt{cp, mv}: Into and out of directories}
+Try this inside \tt{01-files/}:
+\begin{lstlisting}[language=bash]
+$ cp a dir/
+$ mv b.txt dir/
+$ mv dir/a b.txt
+\end{lstlisting}
+\begin{block}{Explanation}
+    \begin{itemize}
+        \item Copy \tt{a} into \tt{dir/}
+        \item Move \tt{b.txt} into \tt{dir/}
+        \item Move \tt{dir/a} back into \tt{b.txt}
+    \end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Challenge}
+Inside \tt{01-files/}:
+\begin{itemize}
+    \item Enter \tt{challenge/}
+    \item Create \tt{backup/}
+    \item Copy \tt{a.txt} into \tt{dir/}
+    \item Move \tt{dir/} into \tt{backup/}
+    \item Verify using \tt{ls}
+    \item Delete \tt{backup/}
+    \item Go to the next section's directory
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Solution}
+\begin{lstlisting}[language=bash]
+$ cd challenge/
+$ mkdir backup/
+$ cp a.txt dir/
+$ mv dir/ backup/
+$ ls
+# Output: backup/  a.txt
+$ ls backup/dir/
+# Output: a.txt
+$ rm -r backup/
+$ cd ../../02-cli/
+\end{lstlisting}
+\end{frame}
