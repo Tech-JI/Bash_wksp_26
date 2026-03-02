@@ -1,0 +1,95 @@
+% !TeX root = bash.tex
+\section{Intro}
+\begin{frame}
+\frametitle{What is shell?}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=2.5cm]{shell.png}
+\end{figure}
+\begin{itemize}
+    \item A \textbf{command-line interpreter} that reads commands you type and executes them
+    \item Also a type of \textbf{scripting language} for automation
+    \item The default shell on most Linux distributions is \textbf{bash}(what we are gonna talk about today)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{The calling stack}
+\begin{columns}
+\begin{column}{0.45\textwidth}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=\textwidth]{bash_kernel_relate}
+    \end{figure}
+\end{column}
+\begin{column}{0.55\textwidth}
+    \begin{itemize}
+        \item \textbf{User}: You! The person typing commands
+        \item \textbf{Terminal}: A program that displays text and captures your input
+            (e.g., GNOME Terminal, Windows Terminal, kitty)
+        \item \textbf{Bash}: The shell that interprets your commands
+        \item \textbf{Kernel}: The core of the OS that actually runs programs,
+            manages hardware, files, processes, etc.
+    \end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{A brief history of bash}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=3cm]{bash_logo}
+\end{figure}
+\begin{itemize}
+    \item Born: 1989
+    \item Runs on Unix-like environments
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{A brief history of Unix}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=3cm]{unix_logo}
+\end{figure}
+\begin{itemize}
+    \item Born: 1969
+    \item Gave rise to Linux, BSD, and Mac OS
+    \item We call them ``Unix-like''
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Unix: The Good Part}
+The Unix philosophy (paraphrased):
+\begin{itemize}
+    \item Everything is a file
+    \item hierarchy file system
+    \item One tool does one thing
+    \item Tools together strong
+\end{itemize}
+\begin{block}{Note}
+    Bash is built upon Unix philosophy. So to learn bash, we first need to know how it works.  
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Before we start}
+\begin{itemize}
+    \item This workshop focuses on bash. The syntax is different with PowerShell, fish, etc. 
+    \item \tt{\$} indicates the following is a \textbf{bash command}.
+        Do not type the \tt{\$}.
+    \item \tt{\#} indicates a \textbf{comment}.
+        Do not type it or anything after it.
+\end{itemize}
+For example, when you see:
+\begin{lstlisting}[language=bash]
+$ echo hello  # print "hello" to stdout
+\end{lstlisting}
+You are going to type:
+\begin{lstlisting}[language=bash]
+echo hello
+\end{lstlisting}
+Then hit Enter. 
+\end{frame}
