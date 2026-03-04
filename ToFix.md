@@ -1,30 +1,16 @@
-1. more greenhand-friendly, save for lots of terms
-2. 
-```mermaid
-graph TD
-    A[用户输入命令] --> B[1. 词法分析/解析]
-    B --> C[2. 别名展开 Alias Expansion]
-    C --> D[3. 各种扩展 Expansion]
-    D --> E[4. 重定向处理 Redirection]
-    E --> F[5. 命令查找 Command Lookup]
-    F --> G{找到命令了吗?}
-    G -- 是 --> H[6. 执行 Execution]
-    G -- 否 --> I[报错: Command not found]
-    H --> J[7. 返回结果并显示到终端]
-```
+1. bash-1  
+- [x] more greenhand-friendly, save for lots of terms  
+- [x] Ask win user to use wsl or git bash(?? not tested)  
+- [x] explain the processes between user inputing commands and kernel executing
+- [x] rearrange bash syntax and tools sequence
+- [x] bind and bindkey (expansion?)
+- [x] redirect and pipeline illustrations  
+- [x] shells comparison zsh,fish(optional)  
 
-3. shells comparison, terminal bash os relations
-
-4. CLI moved forward
-bash syntax and tools
-
-5. bindkey
-alias(optional)
-
-6. redirect pipeline illustrations
-
-7. bash is an interpretive language whose interpreter is bash.
-shebang
-source script file vs execute script file
-
-8. zsh, fish(optional)
+2. bash-2  
+- [ ] explain that bash language is an interpretive language and bash interpreter execute commands and scripts.  
+introduce shebang
+- [ ] file accessibilities, chmod and chown  
+- [ ] source script file vs execute script file(run in current session vs open a new session)  
+- [ ] bashrc introduction and sample bashrc  
+- [ ] extension: shutdown, reboot, ps, pgrep, pkill alias, etc 

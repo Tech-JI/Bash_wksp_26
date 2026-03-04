@@ -180,3 +180,30 @@ Such as:
     }
 \end{block}
 \end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Bash Productivity Tips}
+Bash offers several features to speed up your command-line work:
+
+\begin{itemize}
+    \item \textbf{Tab Completion}: Press \texttt{Tab} to auto-complete commands, file names, and paths.
+        \begin{itemize}
+            \item \texttt{cd /ho\textbf{Tab}} expands to \texttt{cd /home/}
+            \item Double \texttt{Tab} shows all possible matches.
+        \end{itemize}
+    \item \textbf{Command History}:
+        \begin{itemize}
+            \item Use the \texttt{↑} and \texttt{↓} keys to navigate through previous commands.
+            \item Type \texttt{history} to see a numbered list of recent commands.
+            \item Search interactively with \texttt{Ctrl+R}: start typing and the most recent match appears.
+            \item Re-run a command from history with \texttt{!number} (e.g., \texttt{!42}).
+        \end{itemize}
+    \item \textbf{Quick Editing}:
+        \begin{itemize}
+            \item \texttt{Ctrl+A} / \texttt{Ctrl+E}: jump to beginning/end of line.
+            \item \texttt{Ctrl+U} / \texttt{Ctrl+K}: delete from cursor to beginning/end.
+            \item \texttt{Ctrl+W}: delete the word before the cursor.
+        \end{itemize}
+\end{itemize}
+These small habits save time and reduce typing errors.
+\end{frame}
