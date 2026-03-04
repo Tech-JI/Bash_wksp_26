@@ -4,7 +4,6 @@
 - [x] explain the processes between user inputing commands and kernel executing
 - [x] rearrange bash syntax and tools sequence
 - [ ] bind and bindkey (expansion?)
-alias(optional)
 - [x] redirect and pipeline illustrations  
 - [ ] shells comparison zsh,fish(optional)  
 
@@ -13,4 +12,5 @@ alias(optional)
 introduce shebang
 - [ ] file accessibilities, chmod and chown  
 - [ ] source script file vs execute script file(run in current session vs open a new session)  
-- [ ] extension: shutdown, reboot, ps, pgrep, pkill, etc 
+- [ ] bashrc introduction and sample bashrc  
+- [ ] extension: shutdown, reboot, ps, pgrep, pkill alias, etc 
