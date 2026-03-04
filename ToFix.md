@@ -7,7 +7,8 @@
 - [x] redirect and pipeline illustrations  
 - [x] shells comparison zsh,fish(optional)  
 
-2. bash-2  
+
+1. bash-2  
 - [ ] explain that bash language is an interpretive language and bash interpreter execute commands and scripts.  
 introduce shebang
 - [ ] file accessibilities, chmod and chown  
