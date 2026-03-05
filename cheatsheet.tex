@@ -17,13 +17,15 @@
     \tt{pwd}                & print current dir                     \\
     \tt{cp a b}             & copy a to b                           \\
     \tt{cp a dir/}          & copy a into dir/                      \\
-    \tt{cp -r sub/ dir/}    & copy sub/ into dir/                   \\
+    \tt{cp -r sub/ exist-dir/}    & copy sub/ into exist-dir/                   \\
+    \tt{cp -r sub/ new-dir/} & copy sub/ as new-dir/ \\
     \tt{mv a b}             & rename a to b                         \\
     \tt{mv a dir/}          & move a into dir/                      \\
-    \tt{mv sub/ dir/}       & move sub/ into dir/                   \\
+    \tt{mv sub/ exist-dir/}       & move sub/ into exist-dir/                   \\
+    \tt{mv sub/ new-dir/} & rename sub/ as new-dir/ \\
     \tt{rm a}               & remove a                              \\
     \tt{rm -r dir/}         & remove dir/                           \\
-    \tt{ls}                 & list files                            \\
+    \tt{ls}                 & list files under wd                           \\
     \tt{ls -a}              & list files, incl. hidden              \\
     \tt{ls -l}              & list files, show details              \\
     \tt{ls dir/}            & list files under dir/                 \\
@@ -50,10 +52,11 @@
 
 \section{Ctrl+}
 \begin{tabular}{ll}
+    \tt{A} & move cursor to the beginning \\
+    \tt{E} & move cursor the the end \\
     \tt{W} & delete one word to the left                           \\
     \tt{U} & delete everything to the left                         \\
-    \tt{K} & delete everything to the right                        \\
-    \tt{7} & undo                                                  \\
+    \tt{K} & delete everything to the right \\
     \tt{C} & abort                                                 \\
     \tt{R} & search history                                        \\
     \tt{L} & clear screen
@@ -72,18 +75,26 @@
     \verb|A?|           & 0 or 1 A                                  \\
     \verb|A+|           & $\ge 1$ A's                               \\
     \verb|A*|           & $\ge 0$ A's                               \\
-    \verb|A{,6}|        & 6 A's                                     \\
+    \verb|A{6}|        & 6 A's                                     \\
     \verb|A{,6}|        & 0--6 A's                                  \\
     \verb|A{4,6}|       & 4--6 A's                                  \\
     \verb!(ls|cd|rm)!   & one of ls, cd, and rm                     \\
     \verb|\w|           & letters, digits, \_                       \\
-    \verb|\s|           & whitespace                                \\
-    \verb|\b|           & boundary of word                          \\
-    \verb|\W \S \B|     & invert \verb|\w \s \b|
+    % May not work for all programs. 
+    % \verb|\s|           & whitespace                                \\
+    % \verb|\b|           & boundary of word                          \\
+    % \verb|\W \S \B|     & invert \verb|\w \s \b|
 \end{tabular}
 
 
 \section{Scripting}
+\begin{tabular}{ll}
+\verb|$()|          & output of command \\
+\tt{"" (double quote)} & prevent word spliting and globbing \\
+\tt{`' (single quote)} & literal interpretation \\
+\end{tabular}
+\vspace{0.3cm}
+
 \tt{if [[ \underline{TEST} ]]; then BODY; fi}
 \vspace{0.3cm}
 
@@ -122,9 +133,9 @@
 \begin{tabular}{ll}
     \verb|{01..10}|     & 01, 02, …, 10                             \\
     \verb|{2..10..2}|   & 2, 4, …, 10                               \\
-    \verb|$()|          & output of command
 \end{tabular}
 \vspace{0.3cm}
 
-If necessary, \verb|IFS=$'\n'|
+% May be abused. 
+% If necessary, \verb|IFS=$'\n'|
 \end{document}
