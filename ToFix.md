@@ -9,6 +9,20 @@
 
 
 1. bash-2  
+
+Regex
+
+- [ ] Introduce escapes in bracket patterns
+- [ ] Improve quiz quality
+- [ ] The pattern `{4,}` should mean "at least" instead of "more than" 
+- [ ] Explain the `-o` flag in the example with `grep`
+
+`sed`
+
+- [ ] Explain `/g` explicitly
+
+Bash scripting
+
 - [ ] explain that bash language is an interpretive language and bash interpreter execute commands and scripts.  
 introduce shebang
 
