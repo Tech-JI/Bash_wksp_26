@@ -12,9 +12,9 @@
 
 Regex
 
-- [ ] Introduce escapes in bracket patterns
-- [ ] Improve quiz quality
-- [ ] The pattern `{4,}` should mean "at least" instead of "more than" 
+- [-] Introduce escapes in bracket patterns
+- [-] Improve quiz quality
+- [-] The pattern `{4,}` should mean "at least" instead of "more than" 
 - [ ] Explain the `-o` flag in the example with `grep`
 
 `sed`
