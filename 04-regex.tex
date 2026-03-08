@@ -177,7 +177,8 @@ What strings does this regex match? \newline
     \item \verb|cat|                      % yes
     \item \verb|^cat$|                    % no
     \item \verb|cats|                     % yes
-    \item \verb|cat /etc/fstab|           % yes
+    \item \verb|cat /home/anon/30_days_to_building_| \\
+        \verb|a_healthy_relationship_with_your_cat|           % yes
     \item \verb|I have a cat.|            % no
     \item \verb|Cats are the best.|       % no
     \item \verb|Concatenate these files|  % no
@@ -186,21 +187,17 @@ What strings does this regex match? \newline
 
 \begin{frame}[fragile]
 \frametitle{Quiz: Does it match?}
-What matches \tt{+86 021} but not \tt{+86021}?
+What matches \tt{021 54749110} but not \tt{02154749110}?
 \begin{itemize}
-    \item \verb|\+86\s+[0-9]{3}| % this one
-    \item \verb|\+86\s*[0-9]{3}|
+    \item \verb|\021\s+[0-9]{8}| % this one
+    \item \verb|\021\s*[0-9]{8}|
 \end{itemize}
+\end{frame}
 
-What does \Large \verb|[um]jicanvas.com| \normalsize match?
-\begin{itemize}
-    \item \tt{umjicanvas.com}
-    \item \tt{jicanvas.com} % neither
-\end{itemize}
-
-\begin{block}{Challenge}
-    How to fix this regex? % (um)?jicanvas\.com
-\end{block}
+\begin{frame}[fragile]
+\frametitle{Quiz: Does it match?}
+Construct a regex that matches "I'm from SJTU", "I'm from SJTUJI", and "I'm from SJTUGC".
+% I'm from SJTU(JI|GC)?
 \end{frame}
 
 \begin{frame}[fragile]
