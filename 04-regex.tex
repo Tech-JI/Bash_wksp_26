@@ -128,12 +128,12 @@ A repeated pattern can be matched:
         \verb|A*|           & zero or more A's \\ % Kleene closure
         \verb|A{6}|         & 6 A's \\
         \verb|A{4,6}|       & 4--6 A's \\
-        \verb|A{4,}|        & more than 4 A's \\
+        \verb|A{4,}|        & at least 4 A's \\
     \end{tabular}
 \end{table}
 
 \begin{example}
-    \verb|[0-9]{1,3}(,[0-9]{3})*| matches \tt{13} and \tt{420,691,337}.
+    \verb|[0-9]{1,3}(,[0-9]{3})*| matches \tt{13}, \tt{420,691,337}, etc.
 \end{example}
 \end{frame}
 
