@@ -80,6 +80,10 @@ Brackets match any of the characters inside, but \verb|^| and \verb|-| are speci
 \begin{example}
     \verb|[A-C][01][0-9]| matches \tt{A00} up to \tt{C19}.
 \end{example}
+
+\begin{block}{Note}
+    To escape dashes, anchors, and brackets, use \verb|\-|, \verb|\^|, \verb|\[|, and \verb|\]|, respectively.
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
