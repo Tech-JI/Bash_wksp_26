@@ -78,7 +78,10 @@ Brackets match any of the characters inside, but \verb|^| and \verb|-| are speci
 \end{table}
 
 \begin{example}
-    \verb|[A-C][01][0-9]| matches \tt{A00} up to \tt{C19}.
+    \begin{itemize}
+        \item \verb|VV1[58]6| matches VV156 and VV186.
+        \item \verb|[A-C][01][0-9]| matches A00 up to C19.
+    \end{itemize}
 \end{example}
 
 \begin{block}{Note}
@@ -110,9 +113,9 @@ Parentheses can be used to group patterns.
 \begin{table}
     \centering
     \begin{tabular}{ll}
-        \verb![bc]at|[dh]og!        & bat, cat, dog, or hog \\
-        \verb!(ls|cd|rm -r) dir!    & \tt{ls dir}, \tt{cd dir}, or \tt{rm -r dir} \\
-        \verb!ls|cd|rm -r dir!      & \tt{ls}, \tt{cd}, or \tt{rm -r dir} \\
+        \verb!stan|kyle|eric|kenny!        & stan, kyle, eric, or kenny \\
+        \verb!(ls|cd|rm -r) dir!    & "ls dir", "cd dir", or "rm -r dir" \\
+        \verb!ls|cd|rm -r dir!      & "ls", "cd", or "rm -r dir" \\
     \end{tabular}
 \end{table}
 \end{frame}
@@ -133,7 +136,10 @@ A repeated pattern can be matched:
 \end{table}
 
 \begin{example}
-    \verb|[0-9]{1,3}(,[0-9]{3})*| matches \tt{13}, \tt{420,691,337}, etc.
+    \begin{itemize}
+        \item \verb|hh.*| matches hh, hhgg, hhjj, hh!!!!!!, etc.
+        \item \verb|[0-9]{1,3}(,[0-9]{3})*| matches "6", "114,514", "1,919,810", etc.
+    \end{itemize}
 \end{example}
 \end{frame}
 
@@ -146,7 +152,7 @@ the character before/after it.
     \begin{tabular}{ll}
         \verb|^|            & beginning of string \\
         \verb|$|            & end of string \footnote{Beginning or end of line sometimes} \\
-        \verb|\b|           & word boundary \\
+        \verb|\b|           & word boundary (boundary between \verb|\w| and \verb|\W|) \\
         \verb|\B|           & not word boundary \\
     \end{tabular}
 \end{table}
@@ -154,8 +160,9 @@ the character before/after it.
 \begin{example}
     \begin{itemize}
         \item \verb|^$| matches an empty string only
-        \item \verb|\bwork\B| matches \tt{bash workshop} and \tt{worker},
-            but not \tt{homework}
+        \item \verb|vsky$| matches russian names
+        \item \verb|coke\b| matches "would you like some coke?", "yes i'd love to have some coke"
+            but not "i drink twelve cokes a day"
     \end{itemize}
 \end{example}
 \end{frame}
