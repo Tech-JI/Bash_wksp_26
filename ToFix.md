@@ -19,7 +19,7 @@ Regex
 
 `sed`
 
-- [ ] Explain `/g` explicitly
+- [x] Explain `/g` explicitly
 
 Bash scripting
 
