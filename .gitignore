@@ -9,4 +9,4 @@
 *.out
 *.vrb
 img/QRCode.png
-*.pdf
+*.synctex.gz
