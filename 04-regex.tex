@@ -279,16 +279,6 @@ $ sed -E 's/(([0-9]{1,3}\.){3})[0-9]{1,3}/\1xxx/g' \
 \begin{block}{Observation}
     IP addresses like \cverb|192.168.1.1| become \cverb|192.168.1.xxx|
 \end{block}
-
-\begin{block}{Note}
-    You can use backreference not only in replacement strings but also
-    in search patterns. E.g.
-\begin{lstlisting}[language=bash]
-$ echo '"I like backticks."' | sed -E "s/([\"'])(.*)\\1/\`\\2\`/"
-\end{lstlisting}
-    will replace matching single or double quotes with backticks and output
-    \cverb|`I like backticks.`|.
-\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
