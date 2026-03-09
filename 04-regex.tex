@@ -287,14 +287,16 @@ To change every occurrence, use the \cverb|/g| flag for global replacement.
 
 \begin{frame}[fragile]
 \frametitle{Capturing groups}
-A \textbf{capturing group}, or simply \textbf{group}, is a pattern inside
-parentheses that mark a region of text you want to keep in the replaced text.
+\textbf{Capturing groups} are a GNU extention to POSIX ERE.
+A capturing group, or simply \textbf{group}, is a pattern inside
+parentheses that mark a region of text that can be used later.
 \newline \newline
 It can be accessed with a respective \textbf{backreference} which looks like
-\cverb|\1|, \cverb|\2|, up to \cverb|\9|.
+\cverb|\1|, \cverb|\2|, up to \cverb|\9|, where \cverb|\1| is the first group,
+\cverb|\2| the second, etc.
 
 When nested, the position of \cverb|(| determines order, so the outside group is
-\cverb|\1| and the inside is \cverb|\2|.
+\cverb|\1| and the inside one is \cverb|\2|.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -306,6 +308,16 @@ $ sed -E 's/(([0-9]{1,3}\.){3})[0-9]{1,3}/\1xxx/g' \
 \end{lstlisting}
 \begin{block}{Observation}
     IP addresses like \cverb|192.168.1.1| become \cverb|192.168.1.xxx|
+\end{block}
+
+\begin{block}{Note}
+    You can use backreference not only in replacement strings but also
+    in search patterns. E.g.
+\begin{lstlisting}[language=bash]
+$ echo '"I like backticks."' | sed -E "s/([\"'])(.*)\\1/\`\\2\`/"
+\end{lstlisting}
+    will replace matching single or double quotes with backticks and output
+    \cverb|`I like backticks.`|.
 \end{block}
 \end{frame}
 
