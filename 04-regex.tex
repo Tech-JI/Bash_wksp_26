@@ -90,23 +90,6 @@ Brackets match any of the characters inside, but \cverb|^| and \cverb|-| are spe
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Regex patterns: character classes}
-\begin{table}
-    \centering
-    \begin{tabular}{ll}
-        \cverb|\w|           & \cverb|[A-Za-z0-9_]| \\
-        \cverb|\W|           & anything \cverb|\w| does not match \\
-        \cverb|\s|           & whitespace (space, tab, linebreak, etc) \\
-        \cverb|\S|           & anything but whitespace \\
-    \end{tabular}
-\end{table}
-
-\begin{block}{Note}
-    Character classes in brackets like \cverb|[\w\s]| won't work.
-\end{block}
-\end{frame}
-
-\begin{frame}[fragile]
 \frametitle{Regex patterns: \tt{| ()}}
 Vertical bars separate patterns, and matches one of them.
 Parentheses can be used to group patterns.
@@ -153,8 +136,6 @@ the character before or after it.
     \begin{tabular}{ll}
         \cverb|^|            & beginning of string \\
         \cverb|$|            & end of string \footnote{Beginning or end of line sometimes} \\
-        \cverb|\b|           & word boundary (boundary between \cverb|\w| and \cverb|\W|) \\
-        \cverb|\B|           & not word boundary \\
     \end{tabular}
 \end{table}
 
@@ -162,8 +143,6 @@ the character before or after it.
     \begin{itemize}
         \item \cverb|^$| matches an empty string only
         \item \cverb|vsky$| matches russian names
-        \item \cverb|.*coke\b.*| matches \cverb|would you like some coke?|, \cverb|yes i'd love to have some coke|
-            but not \cverb|i drink twelve cokes a day|
     \end{itemize}
 \end{example}
 \end{frame}
