@@ -77,6 +77,27 @@ $ bash um.sh
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Shebang for shell scripts}
+Add the following line to the top of \texttt{05-scripting/um.sh}:
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+\end{lstlisting}
+Then execute the following command:
+\begin{lstlisting}[language=bash]
+$ chmod +x um.sh
+\end{lstlisting}
+Now we can execute the script with the following command:
+\begin{lstlisting}[language=bash]
+$ ./um.sh
+\end{lstlisting}
+\begin{block}{Explanation}
+The additional line is called shebang, which allows us to conveninently execute
+shell scripts. The \cverb|chmod| command gives execute permission to
+our script, which is necessary.
+\end{block}
+\end{frame}
+
 \begin{frame}
 \frametitle{Exit status}
 When a program exits, it emits an \textbf{exit status} (also called exit code).
