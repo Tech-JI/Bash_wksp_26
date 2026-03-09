@@ -15,7 +15,7 @@ Regex
 - [x] Introduce escapes in bracket patterns
 - [x] Improve quiz quality
 - [x] The pattern `{4,}` should mean "at least" instead of "more than" 
-- [ ] Explain the `-o` flag in the example with `grep`
+- [x] Explain the `-o` flag in the example with `grep`
 
 `sed`
 
