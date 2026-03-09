@@ -43,13 +43,13 @@ An \textbf{environment variable} can be set and accessed like this:
 $ export VAR=VALUE  # set
 $ echo $VAR         # access
 \end{lstlisting}
-\tt{export} exposes the variable to programs that are not part of the shell
+\cverb|export| exposes the variable to programs that are not part of the shell
 \footnote{aka not child processes}, such as Python.
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Environment variables}
-Let's say you're downloading something from a completely legal website,
+Suppose you're downloading something from a completely legal website,
 and you want the traffic to go through your completely legal local proxy
 for completely legal reasons.
 \begin{lstlisting}[language=bash]
@@ -58,6 +58,8 @@ $ export HTTPS_PROXY=http://localhost:8080/
 # download the thing
 $ curl -O https://legal.website/legal-thing
 \end{lstlisting}
+Here \cverb|export| is necessary because \cverb|curl| is not part of the shell
+and we need to expose the variable \cverb|HTTPS_PROXY| to it.
 \end{frame}
 
 \begin{frame}[fragile]
