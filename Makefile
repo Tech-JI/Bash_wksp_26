@@ -7,3 +7,4 @@ tex:
 
 clean:
 	latexmk -c
+
