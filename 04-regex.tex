@@ -280,6 +280,12 @@ $ sed -E 's/([0-9]{1,3}\.){3}[0-9]{1,3}/redacted/g' \
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{The \texttt{/g} flag}
+\cverb|sed| by default changes only the first occurrence on each line.
+To change every occurrence, use the \cverb|/g| flag for global replacement.
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Capturing groups}
 A \textbf{capturing group}, or simply \textbf{group}, is a pattern inside
 parentheses that mark a region of text you want to keep in the replaced text.
