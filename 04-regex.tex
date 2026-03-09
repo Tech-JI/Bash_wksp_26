@@ -202,14 +202,14 @@ $ grep -oE '^[^@]{,8}' faculty
         \cverb|-o|   & Print only the matched parts \\
         \cverb|^|    & From beginning of each line \\
         \cverb|[^@]| & Keep any character except @ \\
-        \cverb|{,8}| & Until we reach length 8
+        \cverb|{,8}| & Until we reach length 8 \\
     \end{tabular}
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Your turn}
-Extract all course codes from \tt{04-regex/courses}. \newline
+Extract course codes from \texttt{04-regex/courses}. \newline
 
 \begin{example}
     \begin{tabular}{lcl}
@@ -219,11 +219,21 @@ Extract all course codes from \tt{04-regex/courses}. \newline
     \end{tabular}
 \end{example}
 \pause
-\begin{block}{Solution (naïve version)}
+\begin{block}{Solution}
 \begin{lstlisting}[language=bash]
 $ grep -oE 'V[A-Z][0-9]+' courses
 \end{lstlisting}
 \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Insufficiency of \texttt{grep}}
+What if we want to convert the course codes into the modern form?
+That is, we append ``0J'' at the end and replace
+``VV'' with ``MATH'', ``VY'' with ``ENGL'', ``VG'' with ``ENGR'',
+``VC'' with ``CHEM'', etc. \cverb|grep| cannot achieve this easily.
+\newline \newline
+Enter \cverb|sed|, a program specifically designed for string replacement.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -241,8 +251,7 @@ $ sed -E 's/FIND/REPLACE/FLAGS' FILE
 \cverb|-E| again stands for Extended regex, and flags are optional.
 This command redacts all the IPv4 addresses in the file \tt{ipv4}:
 \begin{lstlisting}[language=bash]
-$ sed -E 's/([0-9]{1,3}\.){3}[0-9]{1,3}/redacted/g' \
-    ipv4
+$ sed -E 's/([0-9]{1,3}\.){3}[0-9]{1,3}/redacted/g' ipv4
 \end{lstlisting}
 \begin{block}{Observe}
     What will happen without the \cverb|g| at the end?
@@ -273,8 +282,7 @@ When nested, the position of \cverb|(| determines order, so the outside group is
 \frametitle{Capturing groups with \tt{sed}}
 What if you only want to redact the subnet (i.e. last part) of the IP addresses?
 \begin{lstlisting}[language=bash]
-$ sed -E 's/(([0-9]{1,3}\.){3})[0-9]{1,3}/\1xxx/g' \
-    ipv4
+$ sed -E 's/(([0-9]{1,3}\.){3})[0-9]{1,3}/\1xxx/g' ipv4
 \end{lstlisting}
 \begin{block}{Observation}
     IP addresses like \cverb|192.168.1.1| become \cverb|192.168.1.xxx|
@@ -283,21 +291,20 @@ $ sed -E 's/(([0-9]{1,3}\.){3})[0-9]{1,3}/\1xxx/g' \
 
 \begin{frame}[fragile]
 \frametitle{Your turn}
-From \tt{04-regex/courses}, select 100- and 200-level math courses and convert
-legacy ``VV'' course codes into modern ``MATH'' codes.
-Do not print other courses.
+Now let's solve the problem of converting legacy course codes into modern ones. 
+From \tt{04-regex/courses}, extract and convert ``VV'' course codes into
+``MATH'' codes.
 \begin{example}
     \begin{tabular}{lcl}
-        \cverb|VV156| & & \cverb|MATH1560J| \\
-        \cverb|VV214| & $\Longrightarrow$ & \cverb|MATH2140J| \\
-        \cverb|VV417| & & \textit{not printed}
+        \cverb|VV156	Applied Calculus II| & & \cverb|MATH1560J| \\
+        \cverb|VV214	Linear Algebra| & $\Longrightarrow$ & \cverb|MATH2140J| \\
+        \cverb|VE215	Introduction to Circuits| & & \textit{unchanged} \\
     \end{tabular}
 \end{example}
 \pause
 \begin{block}{Solution}
 \begin{lstlisting}[language=bash]
-$ grep -E 'VV[12]' courses | \
-    sed -E 's/VV([0-9]{3})/MATH\10J/'
+$ sed -E 's/VV([0-9]{3}).*/MATH\10J/' courses
 \end{lstlisting}
 \end{block}
 \end{frame}
