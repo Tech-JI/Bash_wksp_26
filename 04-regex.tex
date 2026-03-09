@@ -12,10 +12,10 @@ It is a string… to match patterns in other strings.
 \frametitle{What can (and can't) a regex do}
 A regex can (attempt to):
 \begin{itemize}
-    \item Match a cell phone number: \verb|[0-9]{11}|
-    \item Match a .com domain: \verb|([A-Za-z0-9-]+\.)+com|
+    \item Match a cell phone number: \cverb|[0-9]{11}|
+    \item Match a .com domain: \cverb|([A-Za-z0-9-]+\.)+com|
     \item Match \textit{Star Wars} subtitles but not \textit{Star Trek}:
-        \verb!m | [tn]|b!\footnote{Credit: \url{https://xkcd.com/1313/}}
+        \cverb!m | [tn]|b!\footnote{Credit: \url{https://xkcd.com/1313/}}
 	\footnote{Explained: \url{https://www.explainxkcd.com/wiki/index.php/1313:_Regex_Golf}}
         \footnote{The art of regex golf: \url{https://alf.nu/RegexGolf}}
 \end{itemize}
@@ -51,41 +51,41 @@ The dot is the simplest pattern:
     \centering
     \begin{tabular}{ll}
         \textbf{Pattern}    & \textbf{Matches} \\
-        \verb|.|            & any character \\
+        \cverb|.|            & any character \\
     \end{tabular}
 \end{table}
 
 \begin{example}
-    \verb|c.t| matches \tt{cat}, \tt{cut}, \tt{c t}, etc.
+    \cverb|c.t| matches \cverb|cat|, \cverb|cut|, \cverb|c t|, etc.
 \end{example}
 
 \begin{block}{Note}
-    \verb|\.| matches a literal dot. Same goes for \verb|\(|, \verb|\[|, etc.
+    \cverb|\.| matches a literal dot. Same goes for \cverb|\(|, \cverb|\[|, etc.
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Regex patterns: \tt{[]}}
-Brackets match any of the characters inside, but \verb|^| and \verb|-| are special:
+Brackets match any of the characters inside, but \cverb|^| and \cverb|-| are special:
 \begin{table}
     \centering
     \begin{tabular}{ll}
-        \verb|[aeiou]|      & any vowel \\
-        \verb|[^aeiou]|     & anything but a vowel \\
-        \verb|[0-9]|        & any digit \\
-        \verb|[^A-Za-z]|    & anything but letters \\
+        \cverb|[aeiou]|      & any vowel \\
+        \cverb|[^aeiou]|     & anything but a vowel \\
+        \cverb|[0-9]|        & any digit \\
+        \cverb|[^A-Za-z]|    & anything but letters \\
     \end{tabular}
 \end{table}
 
 \begin{example}
     \begin{itemize}
-        \item \verb|VV1[58]6| matches VV156 and VV186.
-        \item \verb|[A-C][01][0-9]| matches A00 up to C19.
+        \item \cverb|VV1[58]6| matches \cverb|VV156| and \cverb|VV186|
+        \item \cverb|[A-C][01][0-9]| matches \cverb|A00| up to \cverb|C19|
     \end{itemize}
 \end{example}
 
 \begin{block}{Note}
-    To escape dashes, anchors, and brackets, use \verb|\-|, \verb|\^|, \verb|\[|, and \verb|\]|, respectively.
+    To escape dashes, anchors, and brackets, use \cverb|\-|, \cverb|\^|, \cverb|\[|, and \cverb|\]|, respectively.
 \end{block}
 \end{frame}
 
@@ -94,15 +94,15 @@ Brackets match any of the characters inside, but \verb|^| and \verb|-| are speci
 \begin{table}
     \centering
     \begin{tabular}{ll}
-        \verb|\w|           & \verb|[A-Za-z0-9_]| \\
-        \verb|\W|           & anything \verb|\w| does not match \\
-        \verb|\s|           & whitespace (space, tab, linebreak, etc) \\
-        \verb|\S|           & anything but whitespace \\
+        \cverb|\w|           & \cverb|[A-Za-z0-9_]| \\
+        \cverb|\W|           & anything \cverb|\w| does not match \\
+        \cverb|\s|           & whitespace (space, tab, linebreak, etc) \\
+        \cverb|\S|           & anything but whitespace \\
     \end{tabular}
 \end{table}
 
 \begin{block}{Note}
-    Character classes in brackets like \verb|[\w\s]| won't work.
+    Character classes in brackets like \cverb|[\w\s]| won't work.
 \end{block}
 \end{frame}
 
@@ -113,9 +113,9 @@ Parentheses can be used to group patterns.
 \begin{table}
     \centering
     \begin{tabular}{ll}
-        \verb!stan|kyle|eric|kenny!        & stan, kyle, eric, or kenny \\
-        \verb!(ls|cd|rm -r) dir!    & "ls dir", "cd dir", or "rm -r dir" \\
-        \verb!ls|cd|rm -r dir!      & "ls", "cd", or "rm -r dir" \\
+        \cverb!stan|kyle|eric|kenny!        & \cverb|stan|, \cverb|kyle|, \cverb|eric|, or \cverb|kenny| \\
+        \cverb!(ls|cd|rm -r) dir!    & \cverb|ls dir|, \cverb|cd dir|, or \cverb|rm -r dir| \\
+        \cverb!ls|cd|rm -r dir!      & \cverb|ls|, \cverb|cd|, or \cverb|rm -r dir| \\
     \end{tabular}
 \end{table}
 \end{frame}
@@ -126,19 +126,20 @@ A repeated pattern can be matched:
 \begin{table}
     \centering
     \begin{tabular}{ll}
-        \verb|A?|           & zero or one A \\
-        \verb|A+|           & one or more A's \\  % Positive closure
-        \verb|A*|           & zero or more A's \\ % Kleene closure
-        \verb|A{6}|         & 6 A's \\
-        \verb|A{4,6}|       & 4--6 A's \\
-        \verb|A{4,}|        & at least 4 A's \\
+        \cverb|A?|           & zero or one A \\
+        \cverb|A+|           & one or more A's \\  % Positive closure
+        \cverb|A*|           & zero or more A's \\ % Kleene closure
+        \cverb|A{6}|         & 6 A's \\
+        \cverb|A{4,6}|       & 4 to 6 A's \\
+        \cverb|A{4,}|        & at least 4 A's \\
     \end{tabular}
 \end{table}
 
 \begin{example}
     \begin{itemize}
-        \item \verb|hh.*| matches hh, hhgg, hhjj, hh!!!!!!, etc.
-        \item \verb|[0-9]{1,3}(,[0-9]{3})*| matches "6", "114,514", "1,919,810", etc.
+        \item \cverb|hh.*| matches \cverb|hh|, \cverb|hhgg|, \cverb|hhjj|, \cverb|hh!!!!!!|, etc.
+        \item \cverb|a(ba)+| matches \cverb|aba|, \cverb|ababa|, \cverb|abababababa|, etc.
+        \item \cverb|[0-9]{1,3}(,[0-9]{3})*| matches \cverb|6|, \cverb|114,514|, \cverb|1,919,810|, etc.
     \end{itemize}
 \end{example}
 \end{frame}
@@ -146,23 +147,23 @@ A repeated pattern can be matched:
 \begin{frame}[fragile]
 \frametitle{Regex patterns: location}
 These do not match literal characters. Instead, they specify the location of
-the character before/after it.
+the character before or after it.
 \begin{table}
     \centering
     \begin{tabular}{ll}
-        \verb|^|            & beginning of string \\
-        \verb|$|            & end of string \footnote{Beginning or end of line sometimes} \\
-        \verb|\b|           & word boundary (boundary between \verb|\w| and \verb|\W|) \\
-        \verb|\B|           & not word boundary \\
+        \cverb|^|            & beginning of string \\
+        \cverb|$|            & end of string \footnote{Beginning or end of line sometimes} \\
+        \cverb|\b|           & word boundary (boundary between \cverb|\w| and \cverb|\W|) \\
+        \cverb|\B|           & not word boundary \\
     \end{tabular}
 \end{table}
 
 \begin{example}
     \begin{itemize}
-        \item \verb|^$| matches an empty string only
-        \item \verb|vsky$| matches russian names
-        \item \verb|.*coke\b.*| matches "would you like some coke?", "yes i'd love to have some coke"
-            but not "i drink twelve cokes a day"
+        \item \cverb|^$| matches an empty string only
+        \item \cverb|vsky$| matches russian names
+        \item \cverb|.*coke\b.*| matches \cverb|would you like some coke?|, \cverb|yes i'd love to have some coke|
+            but not \cverb|i drink twelve cokes a day|
     \end{itemize}
 \end{example}
 \end{frame}
@@ -171,48 +172,48 @@ the character before/after it.
 \frametitle{Quiz: Does it match?}
 What strings does this regex match? \newline
 
-\Large \verb!^cat|cat$! \normalsize
+\Large \cverb!^cat|cat$! \normalsize
 
 \begin{itemize}
-    \item \verb|cat|                      % yes
-    \item \verb|^cat$|                    % no
-    \item \verb|cats|                     % yes
-    \item \verb|cat /home/anon/30_days_to_building_| \\
-        \verb|a_healthy_relationship_with_your_cat|           % yes
-    \item \verb|I have a cat.|            % no
-    \item \verb|Cats are the best.|       % no
-    \item \verb|Concatenate these files|  % no
+    \item \cverb|cat|                      % yes
+    \item \cverb|^cat$|                    % no
+    \item \cverb|cats|                     % yes
+    \item \cverb|cat /home/anon/30_days_to_building_| \\
+        \cverb|a_healthy_relationship_with_your_cat|           % yes
+    \item \cverb|I have a cat.|            % no
+    \item \cverb|Cats are the best.|       % no
+    \item \cverb|Concatenate these files|  % no
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Quiz: Does it match?}
-What matches \tt{021 54749110} but not \tt{02154749110}?
+What matches \cverb|021 54749110| but not \cverb|02154749110|?
 \begin{itemize}
-    \item \verb|\021\s+[0-9]{8}| % this one
-    \item \verb|\021\s*[0-9]{8}|
+    \item \cverb|\021\s+[0-9]{8}| % this one
+    \item \cverb|\021\s*[0-9]{8}|
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Quiz: Does it match?}
-Construct a regex that matches "I'm from SJTU", "I'm from SJTUJI", and "I'm from SJTUGC".
+Construct a regex that matches \cverb|I'm from SJTU|, \cverb|I'm from SJTUJI|, and \cverb|I'm from SJTUGC|.
 % I'm from SJTU(JI|GC)?
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{But how to use a regex, anyway?}
 Try this in \tt{04-regex/}:
-\footnote{For Mac users, instead of \tt{grep} you might have to type \tt{ggrep}}
+\footnote{For Mac users, instead of \ctexttt{grep} you might have to type \ctexttt{ggrep}}
 \begin{lstlisting}[language=bash]
 $ grep -E '.+\..+@sjtu.edu.cn' faculty
 \end{lstlisting}
 \pause
 \begin{block}{Observation}
     The regex matches all email addresses in the file \tt{faculty}
-    that look like ``firstname.lastname@sjtu.edu.cn''.
+    that look like \cverb|firstname.lastname@sjtu.edu.cn|.
     \newline \newline
-    \tt{-E} stands for Extended regex.
+    \cverb|-E| stands for Extended regex.
 \end{block}
 \end{frame}
 
@@ -224,13 +225,13 @@ $ grep -oE '^[^@]{,8}' faculty
 \end{lstlisting}
 \pause
 \begin{block}{Observation}
-    ``@sjtu.edu.cn'' are all gone, and each line is at most 8 characters long.
+    \cverb|@sjtu.edu.cn| are all gone, and each line is at most 8 characters long.
 \end{block}
 \begin{block}{Explanation}
     \begin{tabular}{ll}
-        \verb|^|    & From beginning of each line \\
-        \verb|[^@]| & Keep any character except @ \\
-        \verb|{,8}| & Until we reach length 8
+        \cverb|^|    & From beginning of each line \\
+        \cverb|[^@]| & Keep any character except @ \\
+        \cverb|{,8}| & Until we reach length 8
     \end{tabular}
 \end{block}
 \end{frame}
@@ -241,9 +242,9 @@ Extract all course codes from \tt{04-regex/courses}. \newline
 
 \begin{example}
     \begin{tabular}{lcl}
-        VG100 Introduction to Engineering & & VG100 \\
-        VM020 Machineshop Training & $\Longrightarrow$ & VM020 \\
-        VP140 Physics I & & VP140
+        \cverb|VG100 Introduction to Engineering| & & \cverb|VG100| \\
+        \cverb|VM020 Machineshop Training| & $\Longrightarrow$ & \cverb|VM020| \\
+        \cverb|VP140 Physics I| & & \cverb|VP140|
     \end{tabular}
 \end{example}
 \pause
@@ -256,7 +257,7 @@ $ grep -oE 'V[A-Z][0-9]+' courses
 
 \begin{frame}[fragile]
 \frametitle{Find and replace with \tt{sed}}
-\tt{sed} is a powerful tool for transforming text.
+\cverb|sed| is a powerful tool for transforming text.
 \footnote{For Mac users, this may be called \tt{gsed}.}
 We will be using one very specific syntax for substitution:\footnote{
     When the pattern/replacement contains slashes, you can use things like
@@ -266,14 +267,14 @@ We will be using one very specific syntax for substitution:\footnote{
 $ COMMAND | sed -E 's/FIND/REPLACE/FLAGS'
 $ sed -E 's/FIND/REPLACE/FLAGS' FILE
 \end{lstlisting}
-\tt{-E} again stands for Extended regex, and flags are optional.
+\cverb|-E| again stands for Extended regex, and flags are optional.
 This command redacts all the IPv4 addresses in the file \tt{ipv4}:
 \begin{lstlisting}[language=bash]
 $ sed -E 's/([0-9]{1,3}\.){3}[0-9]{1,3}/redacted/g' \
     ipv4
 \end{lstlisting}
 \begin{block}{Observe}
-    What will happen without the \tt{g} at the end?
+    What will happen without the \cverb|g| at the end?
 \end{block}
 \end{frame}
 
@@ -283,10 +284,10 @@ A \textbf{capturing group}, or simply \textbf{group}, is a pattern inside
 parentheses that mark a region of text you want to keep in the replaced text.
 \newline \newline
 It can be accessed with a respective \textbf{backreference} which looks like
-\verb|\1|, \verb|\2|, up to \verb|\9|.
+\cverb|\1|, \cverb|\2|, up to \cverb|\9|.
 
-When nested, the position of \verb|(| determines order, so the outside group is
-\verb|\1| and the inside is \verb|\2|.
+When nested, the position of \cverb|(| determines order, so the outside group is
+\cverb|\1| and the inside is \cverb|\2|.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -297,7 +298,7 @@ $ sed -E 's/(([0-9]{1,3}\.){3})[0-9]{1,3}/\1xxx/g' \
     ipv4
 \end{lstlisting}
 \begin{block}{Observation}
-    IP addresses like \tt{192.168.1.1} become \tt{192.168.1.xxx}
+    IP addresses like \cverb|192.168.1.1| become \cverb|192.168.1.xxx|
 \end{block}
 \end{frame}
 
@@ -308,9 +309,9 @@ legacy ``VV'' course codes into modern ``MATH'' codes.
 Do not print other courses.
 \begin{example}
     \begin{tabular}{lcl}
-        VV156 & & MATH1560J \\
-        VV214 & $\Longrightarrow$ & MATH2140J \\
-        VV417 & & \textit{not printed}
+        \cverb|VV156| & & \cverb|MATH1560J| \\
+        \cverb|VV214| & $\Longrightarrow$ & \cverb|MATH2140J| \\
+        \cverb|VV417| & & \textit{not printed}
     \end{tabular}
 \end{example}
 \pause
@@ -342,7 +343,7 @@ $ grep -E 'VV[12]' courses | \
 
 \begin{frame}[fragile]
 \frametitle{Atrocities under regex's name}
-If you match a Chinese resident ID with \verb|[0-9]{18}|, people whose
+If you match a Chinese resident ID with \cverb|[0-9]{18}|, people whose
 ID ends with X will be mad at you.
 
 Apart from ignorance, people also abuse regex for fun. This is a regex

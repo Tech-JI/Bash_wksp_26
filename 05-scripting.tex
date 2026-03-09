@@ -68,7 +68,7 @@ for i in {01..05}; do
     cat um-logo-$i.txt
 done
 \end{lstlisting}
-Save file, then come back to bash, \tt{cd} into \tt{05-scripting} and run:
+Save file, then come back to bash, \cverb|cd| into \tt{05-scripting} and run:
 \begin{lstlisting}[language=bash]
 $ bash um.sh
 \end{lstlisting}
@@ -84,7 +84,7 @@ For this very reason, in bash, \textbf{0 is boolean true} and
 \textbf{everything else is false}.
 
 \begin{block}{Note}
-    When you \tt{return 0;} at the end of \tt{int main()}, you are
+    When you \ctexttt{return 0;} at the end of \ctexttt{int main()}, you are
     emitting an exit status of zero.
 \end{block}
 \end{frame}
@@ -131,18 +131,18 @@ Other operators:
 \begin{table}
     \centering
     \begin{tabular}{ll}
-        \tt{-ge} & $\geq$ \\
-        \tt{-gt} & $>$    \\
-        \tt{-le} & $\leq$ \\
-        \tt{-lt} & $<$    \\
-        \tt{-ne} & $\neq$
+        \cverb|-ge| & $\geq$ \\
+        \cverb|-gt| & $>$    \\
+        \cverb|-le| & $\leq$ \\
+        \cverb|-lt| & $<$    \\
+        \cverb|-ne| & $\neq$
     \end{tabular}
 \end{table}
 \begin{block}{Note}
-    Spaces after \verb|[[| and before \verb|]]| are \textbf{required}.
+    Spaces after \cverb|[[| and before \cverb|]]| are \textbf{required}.
     \footnote{
-        Trivia: In bash the \tt{[[ ]]} is built-in, but in some shells
-        it's an executable called \tt{/usr/bin/[[}.
+        Trivia: In bash the \ctexttt{[[ ]]} is built-in, but in some shells
+        it's an executable called \texttt{/usr/bin/[[}.
         See \url{https://serverfault.com/questions/138951/what-is-usr-bin}
     }
 \end{block}
@@ -158,7 +158,7 @@ if (( $i % 2 == 1 )); then
 fi
 \end{lstlisting}
 \begin{block}{Note}
-    We do not use \verb|-eq|, \verb|-gt| etc.~inside \verb|(( ))|.
+    We do not use \cverb|-eq|, \cverb|-gt| etc.~inside \cverb|(( ))|.
 \end{block}
 \end{frame}
 
@@ -174,12 +174,12 @@ elif [[ $str = 'something' ]]; then
     echo "str is 'something'"
 fi
 \end{lstlisting}
-Complementary operators to \tt{-z} and \tt{=}:
+Complementary operators to \cverb|-z| and \cverb|=|:
 \begin{table}
     \centering
     \begin{tabular}{ll}
-        \tt{-n} & not empty \\
-        \tt{!=} & not equal to
+        \cverb|-n| & not empty \\
+        \cverb|!=| & not equal to
     \end{tabular}
 \end{table}
 \end{frame}
@@ -193,12 +193,12 @@ if [[ -e $file ]]; then
     echo "$file exists"
 fi
 \end{lstlisting}
-Common counterparts to \tt{-e}:
+Common counterparts to \cverb|-e|:
 \begin{table}
     \centering
     \begin{tabular}{ll}
-        \tt{-f} & exists and is regular file \\
-        \tt{-d} & exists and is directory
+        \cverb|-f| & exists and is regular file \\
+        \cverb|-d| & exists and is directory
     \end{tabular}
 \end{table}
 \end{frame}
@@ -244,7 +244,7 @@ for file in $(ls); do
 done
 \end{lstlisting}
 \begin{block}{Explanation}
-    \verb|$()| executes a command and takes its output.
+    \cverb|$()| executes a command and takes its output.
     It is called ``command substitution''.
 \end{block}
 \begin{block}{Observation}
@@ -257,7 +257,7 @@ done
 Bash splits strings on spaces, tabs, and newlines.
 This is why \tt{My Documents} was split into \tt{My} and \tt{Documents}.
 \newline \newline
-Adjust the \textbf{IFS} environment variable to delimit on \verb|\n| only:
+Adjust the \textbf{IFS} environment variable to delimit on \cverb|\n| only:
 \begin{lstlisting}[language=bash]
 # for-backup.sh (modified)
 IFS=$'\n'
@@ -266,7 +266,7 @@ for file in $(ls); do
 done
 \end{lstlisting}
 \begin{block}{Explanation}
-    \verb|$''| is called ``ANSI-C quoting''. It is not used very often.
+    \cverb|$''| is called ``ANSI-C quoting''. It is not used very often.
     \footnote{
         More on this:
         \url{https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html}
@@ -288,7 +288,7 @@ done
 echo "$count files backed up"
 \end{lstlisting}
 \begin{block}{Explanation}
-    \verb|$(())| is called ``arithmetic expansion''.
+    \cverb|$(())| is called ``arithmetic expansion''.
 \end{block}
 \end{frame}
 
