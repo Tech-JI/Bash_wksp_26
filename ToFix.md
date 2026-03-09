@@ -23,7 +23,7 @@ Regex
 
 Bash scripting
 
-- [ ] explain that bash language is an interpretive language and bash interpreter execute commands and scripts.  
+- [x] explain that bash language is an interpretive language and bash interpreter execute commands and scripts.  
 introduce shebang
 
 - [ ] \#Variables: all are strings. Could be concatenated. 
