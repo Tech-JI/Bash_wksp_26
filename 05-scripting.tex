@@ -17,6 +17,24 @@ $ for i in {01..05}; do \
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Special characters}
+Some characters in bash has non-literal meaning. Here's a list of them:
+\cverb+ $'"\#=[]!><|;{}()*?~\&+. Use backslash \cverb|\| to escape special
+characters.
+\newline \newline
+Whitespace separates words. To prevent word separation, use single or double
+quotes:
+\begin{lstlisting}[language=bash]
+$ mkdir milias lab reports    # Creates three folders
+$ mkdir 'milias lab reports'  # Creates one folder
+$ mkdir "milias lab reports"  # Also works
+\end{lstlisting}
+Everything inside single quotes has literal meaning. You can't use single
+qoutes inside single quotes; use double quotes in such case. More about double
+qoutes will be covered later.
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Variables}
 \textbf{Variables} in bash are generally strings.
 A variable is defined this way:
