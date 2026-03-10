@@ -353,6 +353,37 @@ Other operators:
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{\textbf{if} statements: test strings}
+\begin{lstlisting}[language=bash]
+# if-test-str.sh
+str="something"
+if [[ -z $str ]]; then
+    echo "str is empty"
+fi
+\end{lstlisting}
+There is also \cverb|-n| for testing whether a string is not empty.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{\textbf{if} statements: test files}
+\begin{lstlisting}[language=bash]
+# if-test-file.sh
+file="something.txt"
+if [[ -e $file ]]; then
+    echo "$file exists"
+fi
+\end{lstlisting}
+Other tests:
+\begin{table}
+    \centering
+    \begin{tabular}{ll}
+        \cverb|-f| & is a regular file \\
+        \cverb|-d| & is a directory \\
+    \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{\textbf{if} statements: arithmetic}
 \begin{lstlisting}[language=bash]
 # if-arith.sh
@@ -367,37 +398,6 @@ fi
     \cverb|==|, \cverb|!=|, \cverb|>|, and \cverb|<| for comparison. This is
     different from \cverb|[[ ]]|.
 \end{block}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{\textbf{if} statements: test strings}
-\begin{lstlisting}[language=bash]
-# if-test-str.sh
-str="something"
-if [[ -z $str ]]; then
-    echo "str is empty"
-fi
-\end{lstlisting}
-There is also \cverb|-n| for testing whether a string is not empty.
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{\textbf{if} statements: file exists}
-\begin{lstlisting}[language=bash]
-# if-file.sh
-file="something.txt"
-if [[ -e $file ]]; then
-    echo "$file exists"
-fi
-\end{lstlisting}
-Common counterparts to \cverb|-e|:
-\begin{table}
-    \centering
-    \begin{tabular}{ll}
-        \cverb|-f| & exists and is regular file \\
-        \cverb|-d| & exists and is directory
-    \end{tabular}
-\end{table}
 \end{frame}
 
 \begin{frame}[fragile]
