@@ -315,9 +315,22 @@ fi
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{\textbf{if} statements: compare strings}
+\begin{lstlisting}[language=bash]
+# if-comp-str.sh
+str=foo
+if [[ "$str" = foo ]]; then
+    echo "str is foo"
+fi
+\end{lstlisting}
+Operators other than \cverb|=| include \cverb|!=|, \cverb|>|, and \cverb|<| with
+their usual meaning.
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{\textbf{if} statements: compare integers}
 \begin{lstlisting}[language=bash]
-# if-comp.sh
+# if-comp-int.sh
 i=3
 if [[ $i -eq 3 ]]; then
     echo "i is 3"
