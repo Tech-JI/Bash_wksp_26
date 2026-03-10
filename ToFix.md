@@ -42,7 +42,7 @@ Reference: https://stackoverflow.com/questions/18135451/what-is-the-difference-b
 Introduce `$0 $# $@ $* $?`
 `$?` could be connected to \#Exit status
 
-- [ ] completely remove `IFS=$'\n'` and add proper double quotes.
+- [x] completely remove `IFS=$'\n'` and add proper double quotes.
 its very easy to abuse since it affect global bash expansion. The better approach is to use double quotes.  
 
 Also, replace every `$(ls)` with `*`
@@ -50,7 +50,7 @@ Also, replace every `$(ls)` with `*`
 
 - [ ] in "Print the odd numbered lines of 05-scripting/logos.txt." ex, introduce `$()` and state that `$(cat logos.txt)` is only for practice. Production will use `read`, `awk`, etc. 
 
-- [ ] while loop
+- [x] while loop
 ```bash
 while [ condition ]; do
     # commands
