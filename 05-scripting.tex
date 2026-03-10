@@ -256,7 +256,7 @@ our script.
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Exit code}
 Every command results in an \textbf{exit code} whenever it terminates.
 By convention, an exit code of 0 implies success, and everything else means
@@ -269,6 +269,20 @@ For this very reason, in bash, \textbf{0 is boolean true} and
     When you \ctexttt{return 0;} at the end of \ctexttt{int main()}, you are
     emitting an exit status of zero.
 \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Control operators}
+
+The operators \cverb|&&| and \cverb!||! are called \textbf{control operators}.
+They are used between two commands, and the first command determines
+whether the second one is executed.
+\begin{lstlisting}[language=bash]
+$ mkdir dir && cd dir
+\end{lstlisting}
+Here \cverb|cd| is executed only if \cverb|mkdir| is successful. \cverb!||!
+does the exact opposite: the second command is executed only if the first one
+fails.
 \end{frame}
 
 \begin{frame}[fragile]
