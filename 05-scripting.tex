@@ -26,13 +26,25 @@ $ s=s
 \end{lstlisting}
 Surprisingly these do \textbf{not} work:
 \begin{lstlisting}[language=bash]
-$ i = 0   # WRONG
-$ s = s # WRONG
+$ i = 0  # WRONG
+$ s = s  # WRONG
 \end{lstlisting}
 They can be accessed with a dollar sign:
 \begin{lstlisting}[language=bash]
-$ echo $i  # 0
+$ echo $i  # 0 P.S. This is a string
 $ echo $s  # s
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Variable expansion}
+The use of the dollar sign in the previous example is called
+\textbf{variable expansion}. You may enclose variable names in braces when
+necessary:
+\begin{lstlisting}[language=bash]
+$ fruit=apple
+$ echo "The plural of $fruit is $fruits."   # Don't do this
+$ echo "The plural of $fruit is ${fruit}s." # Do this
 \end{lstlisting}
 \end{frame}
 
