@@ -427,63 +427,37 @@ done
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{\textbf{for} statements: list of strings}
-A string is split into a list with respect to whitespace.
-\newline \newline
-Let's say you want to create a backup of every file inside current directory:
+\frametitle{\textbf{for} statements: globs}
 \begin{lstlisting}[language=bash]
 # for-backup.sh
-for file in $(ls); do
+for file in *; do
     cp $file $file.backup
 done
 \end{lstlisting}
-\begin{block}{Explanation}
-    \cverb|$()| executes a command and takes its output.
-    It is called ``command substitution''.
-\end{block}
-\begin{block}{Observation}
-    Why does bash think ``My Documents'' are two files?
-\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{\textbf{for} statements: IFS}
-Bash splits strings on spaces, tabs, and newlines.
-This is why \tt{My Documents} was split into \tt{My} and \tt{Documents}.
-\newline \newline
-Adjust the \textbf{IFS} environment variable to delimit on \cverb|\n| only:
+\frametitle{\textbf{for} statements: list of words}
+The previous two versions of for loops are not fundamentally different. The
+range \cverb|{10..1}| expands to \cverb|10 9 8 7 6 5 4 3 2 1|, and \cverb|*|
+expands to a list of all files in the current directory. A minimal example of
+for loop is:
 \begin{lstlisting}[language=bash]
-# for-backup.sh (modified)
-IFS=$'\n'
-for file in $(ls); do
-    cp $file $file.backup
+# for-minimal.sh
+for name in alice bob charlie; do
+    echo "My name is $name."
 done
 \end{lstlisting}
-\begin{block}{Explanation}
-    \cverb|$''| is called ``ANSI-C quoting''. It is not used very often.
-    \footnote{
-        More on this:
-        \url{https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html}
-    }
-\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{\textbf{for} statements: accumulator}
-Let's try keeping count with an integer variable.
+\frametitle{\textbf{while} statements}
+\cverb|while| statements looks like:
 \begin{lstlisting}[language=bash]
-# for-backup.sh (modified)
-IFS=$'\n'
-count=0
-for file in $(ls); do
-    cp $file $file.backup
-    count=$(( count + 1 ))
+while COMMAND; do
+    BODY
 done
-echo "$count files backed up"
 \end{lstlisting}
-\begin{block}{Explanation}
-    \cverb|$(())| is called ``arithmetic expansion''.
-\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
