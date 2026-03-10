@@ -78,6 +78,63 @@ $ bash um.sh
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{File Permissions \& \texttt{chmod}}
+In Linux, every file has permissions for 3 roles: \textbf{User} (owner), \textbf{Group}, and \textbf{Others}.
+\begin{itemize}
+    \item \textbf{r} (read) = 4
+    \item \textbf{w} (write) = 2
+    \item \textbf{x} (execute) = 1
+\end{itemize}
+We use \cverb|chmod| to change these permissions:
+\begin{lstlisting}[language=bash]
+# Numeric mode (Add up the numbers)
+# 7=4+2+1 (rwx), 5=4+1 (r-x)
+$ chmod 755 um.sh  # Owner rwx, Group r-x, Others r-x
+
+# Symbolic mode
+$ chmod +x um.sh   # Add execute permission for all
+$ chmod u+w um.sh  # Add write permission for owner (user)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{File Ownership: \texttt{chown}}
+Sometimes you need to change who owns a file or directory. We use \cverb|chown| (change owner).
+\newline \newline
+This usually requires \cverb|sudo| (superuser privileges).
+\begin{lstlisting}[language=bash]
+# Syntax: chown [user]:[group] file
+
+# Change owner and group to root
+$ sudo chown root:root config.txt
+
+# Recursively (-R) change owner of a whole directory
+$ sudo chown -R myuser:mygroup /var/www/
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Execute vs. Source a Script}
+There are two distinct ways to run a shell script:
+\begin{block}{1. Execute (\ctexttt{./script.sh})}
+Runs in a \textbf{new subshell} (child process).
+Variables and directory changes (\cverb|cd|) inside the script will \textbf{NOT} affect your current terminal. Requires \cverb|+x| permission.
+\end{block}
+
+\begin{block}{2. Source (\ctexttt{source script.sh} or \ctexttt{. script.sh})}
+Runs in the \textbf{current shell}.
+Variables, \cverb|export|, and directory changes \textbf{WILL} remain in your current terminal. Does \textbf{not} require \cverb|+x| permission (only read permission).
+\end{block}
+
+\begin{lstlisting}[language=bash]
+# Try writing a script with "cd ../" and test both:
+$ chmod +x test_run.sh
+$ ./test_run.sh      # You stay in the same directory
+$ source test_run.sh # You are now in /turball
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Shebang for shell scripts}
 Add the following line to the top of \texttt{05-scripting/um.sh}:
 \begin{lstlisting}[language=bash]
@@ -97,6 +154,7 @@ shell scripts. The \cverb|chmod| command gives execute permission to
 our script, which is necessary.
 \end{block}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{Exit status}
@@ -352,6 +410,63 @@ for line in $(cat obf.txt); do
 done
 \end{lstlisting}
 \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Environment Setup: \texttt{\textasciitilde/.bashrc}}
+\texttt{\textasciitilde/.bashrc} is a script that runs automatically every time you open a new interactive terminal. 
+\newline \newline
+It is the perfect place to set environment variables and \textbf{aliases} (custom shortcuts).
+\begin{lstlisting}[language=bash]
+# Edit your ~/.bashrc
+$ nano ~/.bashrc
+
+# Add to the end of the file:
+export PATH="$HOME/my_scripts:$PATH"
+alias ll='ls -alF'
+alias c='clear'
+alias rm='rm -i' # Prompt before overwrite/delete
+\end{lstlisting}
+\begin{block}{Note}
+After editing, you must run \ctexttt{source \textasciitilde/.bashrc} for changes to take effect in your current session!
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Extension: Process Management}
+When a program freezes, you need to manage its process.
+\begin{itemize}
+    \item \cverb|ps aux|: List all running processes.
+    \item \cverb|pgrep [name]|: Find the Process ID (PID) by name.
+    \item \cverb|kill [PID]|: Terminate a process by its PID.
+    \item \cverb|pkill [name]|: Forcefully terminate processes by name.
+\end{itemize}
+
+\begin{lstlisting}[language=bash]
+# Find the PID of python
+$ pgrep python
+12345
+
+# Kill it violently by name (very useful!)
+$ pkill -9 python
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Extension: System Management}
+Basic commands to control the machine's power state (requires \cverb|sudo|):
+\begin{itemize}
+    \item \cverb|shutdown|: Turn off the system.
+    \item \cverb|reboot|: Restart the system immediately.
+\end{itemize}
+
+\begin{lstlisting}[language=bash]
+$ sudo reboot          # Restart now
+
+$ sudo shutdown now    # Shut down immediately
+$ sudo shutdown +10    # Shut down in 10 minutes
+$ sudo shutdown -c     # Cancel a pending shutdown
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}
