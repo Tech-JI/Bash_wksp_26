@@ -19,15 +19,16 @@ $ for i in {01..05}; do \
 
 \begin{frame}[fragile]
 \frametitle{Variables}
-A variable in bash is defined this way:
+\textbf{Variables} in bash are generally strings.
+A variable is defined this way:
 \begin{lstlisting}[language=bash]
 $ i=0
-$ s='s'
+$ s=s
 \end{lstlisting}
 Surprisingly these do \textbf{not} work:
 \begin{lstlisting}[language=bash]
 $ i = 0   # WRONG
-$ s = 's' # WRONG
+$ s = s # WRONG
 \end{lstlisting}
 They can be accessed with a dollar sign:
 \begin{lstlisting}[language=bash]
@@ -43,8 +44,7 @@ An \textbf{environment variable} can be set and accessed like this:
 $ export VAR=VALUE  # set
 $ echo $VAR         # access
 \end{lstlisting}
-\cverb|export| exposes the variable to programs that are not part of the shell
-\footnote{aka not child processes}, such as Python.
+\cverb|export| exposes the variable to child processes.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -58,9 +58,9 @@ $ export HTTPS_PROXY=http://localhost:8080/
 # download the thing
 $ curl -O https://legal.website/legal-thing
 \end{lstlisting}
-Here \cverb|export| is necessary because \cverb|curl| is not part of the shell
-and we need to expose the variable \cverb|HTTPS_PROXY| to it.
-\end{frame}
+Here \cverb|export| is necessary because we need to expose the variable
+\cverb|HTTPS_PROXY| to \cverb|curl|, a child process.
+and \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Shell scripts}
