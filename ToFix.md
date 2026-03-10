@@ -50,6 +50,8 @@ Also, replace every `$(ls)` with `*`
 
 - [ ] in "Print the odd numbered lines of 05-scripting/logos.txt." ex, introduce `$()` and state that `$(cat logos.txt)` is only for practice. Production will use `read`, `awk`, etc. 
 
+Actually just replace this exercise with a better one.
+
 - [x] while loop
 ```bash
 while [ condition ]; do
