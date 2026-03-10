@@ -103,8 +103,76 @@ done
 \end{lstlisting}
 Save file, then come back to bash, \cverb|cd| into \tt{05-scripting} and run:
 \begin{lstlisting}[language=bash]
-$ bash um.sh
+$ ./um.sh
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Viewing Permissions: \texttt{ls -l}}
+The command didn't work because we didn't ask for permissions.
+Before changing permissions, we need to know how to read them. 
+We use the \texttt{ls -l} (long format) command.
+
+\begin{lstlisting}[language=bash]
+$ ls -l um.sh
+-rwxr-xr-- 1 ubuntu devgroup 1048 Mar 21 10:00 um.sh
+\end{lstlisting}
+
+\begin{block}{Anatomy of the output}
+The most important part is the very first column: \textbf{\texttt{-rwxr-xr--}}
+\begin{itemize}
+    \item It consists of exactly \textbf{10 characters}.
+    \item It tells us the file type and who can do what.
+    \item The rest of the line shows: links, \textbf{owner} (ubuntu), \textbf{group} (devgroup), size, date, and filename.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Decoding the 10 Characters}
+Let's break down \textbf{\texttt{-rwxr-xr--}}:
+
+\begin{itemize}
+    \item \textbf{Char 1 (Type):} \texttt{-} means regular file. 
+    \item \textbf{Chars 2-4 (User/Owner):} \texttt{rwx} \\
+          The owner can \textbf{R}ead, \textbf{W}rite, and e\textbf{X}ecute.
+    \item \textbf{Chars 5-7 (Group):} \texttt{r-x} \\
+          The group can \textbf{R}ead and e\textbf{X}ecute, but \textbf{NOT} write (\texttt{-}).
+    \item \textbf{Chars 8-10 (Others):} \texttt{r--} \\
+          Everyone else can only \textbf{R}ead.
+\end{itemize}
+
+\begin{table}
+    \centering
+    \begin{tabular}{c c c c}
+        \textbf{Type} & \textbf{User} & \textbf{Group} & \textbf{Others} \\
+        \texttt{-} & \texttt{r w x} & \texttt{r - x} & \texttt{r - -}
+    \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{From Letters to Numbers (\texttt{chmod})}
+Now we can connect the visual output of \texttt{ls -l} to the numeric mode used in \texttt{chmod}.
+\vspace{0.5em}
+
+Remember the values: \textbf{r=4, w=2, x=1, -=0}
+
+\begin{lstlisting}[language=bash]
+# Visual permission:  -  r w x   r - x   r - x
+# Math equivalent:       4+2+1   4+0+1   4+0+1
+# Final Number:            7       5       5
+\end{lstlisting}
+
+So, if you see \texttt{-rwxr-xr-x}, it means the file currently has \textbf{755} permissions.
+\vspace{0.5em}
+
+\begin{block}{Quick Practice}
+What is the numeric mode for \texttt{-rw-r--r--}?
+\pause % This adds an animation pause in Beamer!
+\newline
+\textbf{Answer:} 644 (4+2+0, 4+0+0, 4+0+0). Very common for text files!
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
