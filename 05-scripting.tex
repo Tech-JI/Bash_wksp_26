@@ -370,25 +370,15 @@ fi
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{\textbf{if} statements: test string variable}
+\frametitle{\textbf{if} statements: test strings}
 \begin{lstlisting}[language=bash]
-# if-str.sh
+# if-test-str.sh
 str="something"
 if [[ -z $str ]]; then
     echo "str is empty"
-elif [[ $str = 'something' ]]; then
-    # = and == are both ok
-    echo "str is 'something'"
 fi
 \end{lstlisting}
-Complementary operators to \cverb|-z| and \cverb|=|:
-\begin{table}
-    \centering
-    \begin{tabular}{ll}
-        \cverb|-n| & not empty \\
-        \cverb|!=| & not equal to
-    \end{tabular}
-\end{table}
+There is also \cverb|-n| for testing whether a string is not empty.
 \end{frame}
 
 \begin{frame}[fragile]
