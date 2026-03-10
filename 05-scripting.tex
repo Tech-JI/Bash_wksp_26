@@ -3,9 +3,8 @@
 \begin{frame}[fragile]
 \frametitle{Bash is a programming language}
 
-Bash, in essence, is a command interpreter, i.e. it executes commands.
-We have covered interactive command execution in part one. Here we introduce
-script execution of bash.
+Besides executing commands, bash is also a programming language. We can write
+and execute bash scripts.
 \newline \newline
 Let's say you want to print many files at once.
 \newline \newline
@@ -60,7 +59,7 @@ $ curl -O https://legal.website/legal-thing
 \end{lstlisting}
 Here \cverb|export| is necessary because we need to expose the variable
 \cverb|HTTPS_PROXY| to \cverb|curl|, a child process.
-and \end{frame}
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Shell scripts}
