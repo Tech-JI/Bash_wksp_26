@@ -26,7 +26,7 @@ Bash scripting
 - [x] explain that bash language is an interpretive language and bash interpreter execute commands and scripts.  
 introduce shebang
 
-- [ ] \#Variables: all are strings. Could be concatenated. 
+- [x] \#Variables: all are strings. Could be concatenated. 
 Explain:
 braces: for speration. e.g. `${VAR}REMANING_STRINGS`
 
