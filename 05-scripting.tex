@@ -325,6 +325,9 @@ fi
 \end{lstlisting}
 Operators other than \cverb|=| include \cverb|!=|, \cverb|>|, and \cverb|<| with
 their usual meaning.
+\begin{block}{Note}
+    Spaces after \cverb|[[| and before \cverb|]]| are \textbf{required}.
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -347,14 +350,6 @@ Other operators:
         \cverb|-ne| & $\neq$
     \end{tabular}
 \end{table}
-\begin{block}{Note}
-    Spaces after \cverb|[[| and before \cverb|]]| are \textbf{required}.
-    \footnote{
-        Trivia: In bash the \ctexttt{[[ ]]} is built-in, but in some shells
-        it's an executable called \texttt{/usr/bin/[[}.
-        See \url{https://serverfault.com/questions/138951/what-is-usr-bin}
-    }
-\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
