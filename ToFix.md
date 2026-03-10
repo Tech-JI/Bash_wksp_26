@@ -38,7 +38,7 @@ Reference: https://stackoverflow.com/questions/18135451/what-is-the-difference-b
 
 (remove the Note in \#for startements: range)
 
-- [ ] Special Variables(Before \#Exit status)  
+- [x] Special Variables(Before \#Exit status)  
 Introduce `$0 $# $@ $* $?`
 `$?` could be connected to \#Exit status
 
