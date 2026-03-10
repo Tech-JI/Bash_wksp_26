@@ -362,7 +362,10 @@ if (( $i % 2 == 1 )); then
 fi
 \end{lstlisting}
 \begin{block}{Note}
-    We do not use \cverb|-eq|, \cverb|-gt| etc.~inside \cverb|(( ))|.
+    \cverb|(( ))| is called \textbf{arithmetic evalution}, within which we can
+    perform basic arithmetic operations like addition, division, etc. We use
+    \cverb|==|, \cverb|!=|, \cverb|>|, and \cverb|<| for comparison. This is
+    different from \cverb|[[ ]]|.
 \end{block}
 \end{frame}
 
