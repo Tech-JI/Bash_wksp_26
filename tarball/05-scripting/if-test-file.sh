@@ -1,4 +1,4 @@
-file="something.txt"
-if [[ -e $file ]]; then
-    echo "$file exists"
+bash="/bin/bash"
+if [[ -e $bash ]]; then
+    echo "$bash exists"
 fi

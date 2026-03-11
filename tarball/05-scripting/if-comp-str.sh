@@ -1,4 +1,4 @@
-str=foo
-if [[ "$str" = foo ]]; then
-    echo "str is foo"
+name=Bond
+if [[ "$name" = Bond ]]; then
+    echo "The name's Bond. James Bond."
 fi

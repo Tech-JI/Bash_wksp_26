@@ -1,4 +1,4 @@
-str="something"
-if [[ -z $str ]]; then
-    echo "str is empty"
+wallet='$$$$$$$$$$$$'
+if [[ -z $wallet ]]; then
+    echo "I'm broke, spare me some coins."
 fi

@@ -1,4 +1,4 @@
-i=3
-if [[ $i -eq 3 ]]; then
-    echo "i is 3"
+num=7
+if [[ $num -eq 7 ]]; then
+    echo "Feeling lucky today."
 fi

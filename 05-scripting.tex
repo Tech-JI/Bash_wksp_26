@@ -326,16 +326,16 @@ fi
 \frametitle{\textbf{if} statements: compare strings}
 \begin{lstlisting}[language=bash]
 # if-comp-str.sh
-str=foo
-if [[ "$str" = foo ]]; then
-    echo "str is foo"
+name=Bond
+if [[ "$name" = Bond ]]; then
+    echo "The name's Bond. James Bond."
 fi
 \end{lstlisting}
 Operators other than \cverb|=| include \cverb|!=|, \cverb|>|, and \cverb|<| with
 their usual meaning.
 \begin{block}{Note}
-    \cverb|[[| is a command. In the above example, \cverb|"$str"|,
-    \cverb|=|, \cverb|foo|, and \cverb|]]| are passed in as arguments to
+    \cverb|[[| is a command. In the above example, \cverb|"$name"|,
+    \cverb|=|, \cverb|Bond|, and \cverb|]]| are passed in as arguments to
     \cverb|[[|. Therefore, spaces after \cverb|[[| and before \cverb|]]| are
     \textbf{required}. \cverb|[[| has exit code just like any other command.
 \end{block}
@@ -345,9 +345,9 @@ their usual meaning.
 \frametitle{\textbf{if} statements: compare integers}
 \begin{lstlisting}[language=bash]
 # if-comp-int.sh
-i=3
-if [[ $i -eq 3 ]]; then
-    echo "i is 3"
+num=7
+if [[ $num -eq 7 ]]; then
+    echo "Feeling lucky today."
 fi
 \end{lstlisting}
 Other operators:
@@ -367,21 +367,23 @@ Other operators:
 \frametitle{\textbf{if} statements: test strings}
 \begin{lstlisting}[language=bash]
 # if-test-str.sh
-str="something"
-if [[ -z $str ]]; then
-    echo "str is empty"
+wallet='$$$$$$$$$$$$'
+if [[ -z $wallet ]]; then
+    echo "I'm broke, spare me some coins please."
 fi
 \end{lstlisting}
-There is also \cverb|-n| for testing whether a string is not empty.
+This is equivalent to \cverb|[[ $wallet = '' ]]|. There is also \cverb|-n| for
+testing whether a string is not empty, for those who are too lazy to write
+\cverb|! [[ -z $wallet ]]|.
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{\textbf{if} statements: test files}
 \begin{lstlisting}[language=bash]
 # if-test-file.sh
-file="something.txt"
-if [[ -e $file ]]; then
-    echo "$file exists"
+bash="/bin/bash"
+if [[ -e $bash ]]; then
+    echo "$bash exists"
 fi
 \end{lstlisting}
 Other tests:
@@ -400,7 +402,9 @@ Other tests:
 # if-arith.sh
 i=3
 if (( $i % 2 == 1 )); then
-    echo "i is odd"
+    echo "$i is odd"
+else
+    echo "$i is even"
 fi
 \end{lstlisting}
 \begin{block}{Note}
@@ -434,6 +438,7 @@ for t in {10..1}; do
     echo "$t seconds left"
     sleep 1
 done
+echo LAUNCH
 \end{lstlisting}
 \end{frame}
 
@@ -455,7 +460,7 @@ expands to a list of all files in the current directory. A minimal example of
 for loop is:
 \begin{lstlisting}[language=bash]
 # for-minimal.sh
-for name in alice bob charlie; do
+for name in John Paul George Ringo; do
     echo "My name is $name."
 done
 \end{lstlisting}
