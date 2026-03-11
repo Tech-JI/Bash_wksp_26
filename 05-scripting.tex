@@ -300,9 +300,9 @@ Usually, we use an \textbf{if} statement to:
 \end{itemize}
 It looks like this:
 \begin{lstlisting}[language=bash]
-if CONDITION; then
+if COMMAND; then
     BODY
-elif CONDITION; then
+elif COMMAND; then
     BODY
 else
     BODY
@@ -333,7 +333,10 @@ fi
 Operators other than \cverb|=| include \cverb|!=|, \cverb|>|, and \cverb|<| with
 their usual meaning.
 \begin{block}{Note}
-    Spaces after \cverb|[[| and before \cverb|]]| are \textbf{required}.
+    \cverb|[[| is a command. In the above example, \cverb|"$str"|,
+    \cverb|=|, \cverb|foo|, and \cverb|]]| are passed in as arguments to
+    \cverb|[[|. Therefore, spaces after \cverb|[[| and before \cverb|]]| are
+    \textbf{required}. \cverb|[[| has exit code just like any other command.
 \end{block}
 \end{frame}
 
