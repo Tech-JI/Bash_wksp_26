@@ -478,18 +478,38 @@ done
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{Command substitution}
+\cverb|$(COMMAND)| is called \textbf{command substitution}. This is like
+variable expansion but for commands. It will be replaced with the output of
+\cverb|COMMAND|. Here's an example:
+\begin{lstlisting}[language=bash]
+# `date` is a command that prints the current time
+$ message="Current time: $(date)"
+$ echo "$message"
+\end{lstlisting}
+\begin{block}{Note}
+Quotes inside command substitution are isolated from the outside.
+\begin{lstlisting}[language=bash]
+# Replace underscores in filename with spaces
+$ for file in *; do
+$     mv "$file" "$(echo "$file" | sed -E 's/_/ /g')"
+$ done
+\end{lstlisting}
+Syntax highlighting here is WRONG. We don't escape the quotes in
+\cverb|echo "$file"| because command substitution isolates it from the outside
+double quotes.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Your turn}
-Print the odd numbered lines of \tt{05-scripting/logos.txt}.
+Write a script to change all files in the current directory with extension
+.jpeg into .jpg extension.
 \pause
 \begin{block}{Solution}
 \begin{lstlisting}[language=bash]
-IFS=$'\n'
-count=0
-for line in $(cat logos.txt); do
-    count=$(( count + 1 ))
-    if (( count % 2 == 1 )); then
-        echo $line
-    fi
+for file in *.jpeg; do
+    mv "$file" "$(echo "$file" | sed -E 's/\.[^.]*$/.jpg/')"
 done
 \end{lstlisting}
 \end{block}
@@ -497,22 +517,33 @@ done
 
 \begin{frame}[fragile]
 \frametitle{The Ultimate Challenge}
-Each line in \tt{05-scripting/obf.txt} begins with an 8-digit number.
-Print every line with its number greater than any of the lines above.
-\pause
-\begin{block}{Solution}
+You have a messy folder filled with thousands of files. Let's clean it up with
+the following procedure:
+\begin{itemize}
+    \item Replace spaces with underscores in filenames
+    \item For each file with an extension, create a folder for this extension if such
+folder does not exist
+    \item Move the file into its corresponding folder
+\end{itemize}
+Make sure you only organize regular files but not directories, i.e. test
+against regular files.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{The Ultimate Challenge: solution}
 \begin{lstlisting}[language=bash]
-IFS=$'\n'
-max=0
-for line in $(cat obf.txt); do
-    num=$(echo $line | grep -oE '^[0-9]{8}')
-    if [[ $num -gt $max ]]; then
-        echo $line
-        max=$num
+for file in *; do
+    if [[ -f $file ]]; then
+        newfile="$(echo "$file" | sed -E 's/ /_/g')"
+        mv "$file" "$newfile"
+        ext="$(echo "$newfile" | sed -E 's/^.*\.([^.]*)$/\1/')"
+        if [[ -n $ext ]] && ! [[ -e $ext ]]; then
+            mkdir "$ext"
+            mv "$newfile" "$ext"
+        fi
     fi
 done
 \end{lstlisting}
-\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
