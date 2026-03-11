@@ -265,6 +265,10 @@ something went wrong (consult respective man pages).
 \newline \newline
 For this very reason, in bash, \textbf{0 is boolean true} and
 \textbf{everything else is false}.
+\newline \newline
+The sign \cverb|!| is used to negate an exit code: \cverb|! EXPR| is true only
+if \cverb|EXPR| is false. The space between \cverb|!| and \cverb|EXPR| is
+required.
 
 \begin{block}{Note}
     When you \ctexttt{return 0;} at the end of \ctexttt{int main()}, you are
