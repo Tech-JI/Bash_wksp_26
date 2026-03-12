@@ -111,7 +111,7 @@ $ ./um.sh
 
 \begin{frame}[fragile]
 \frametitle{Viewing Permissions: \texttt{ls -l}}
-The command didn't work because we didn't ask for permissions.
+You may encounter "Permission denied" because you didn't have executing permission. 
 Before changing permissions, we need to know how to read them. 
 We use the \texttt{ls -l} (long format) command.
 
@@ -230,7 +230,7 @@ Variables, \cverb|export|, and directory changes \textbf{WILL} remain in your cu
 # Try writing a script with "cd ../" and test both:
 $ chmod +x test_run.sh
 $ ./test_run.sh      # You stay in the same directory
-$ source test_run.sh # You are now in /turball
+$ source test_run.sh # You are now in /tarball
 \end{lstlisting}
 \end{frame}
 
