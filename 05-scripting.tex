@@ -334,10 +334,7 @@ fi
 Operators other than \cverb|=| include \cverb|!=|, \cverb|>|, and \cverb|<| with
 their usual meaning.
 \begin{block}{Note}
-    \cverb|[[| is a command. In the above example, \cverb|"$name"|,
-    \cverb|=|, \cverb|Bond|, and \cverb|]]| are passed in as arguments to
-    \cverb|[[|. Therefore, spaces after \cverb|[[| and before \cverb|]]| are
-    \textbf{required}. \cverb|[[| has exit code just like any other command.
+    Spaces after \cverb|[[| and before \cverb|]]| are \textbf{required}.
 \end{block}
 \end{frame}
 
@@ -447,7 +444,7 @@ echo LAUNCH
 \begin{lstlisting}[language=bash]
 # for-backup.sh
 for file in *; do
-    cp $file $file.backup
+    cp "$file" "$file.backup"
 done
 \end{lstlisting}
 \end{frame}
@@ -509,7 +506,7 @@ Write a script to change all files in the current directory with extension
 \begin{block}{Solution}
 \begin{lstlisting}[language=bash]
 for file in *.jpeg; do
-    mv "$file" "$(echo "$file" | sed -E 's/\.[^.]*$/.jpg/')"
+    mv "$file" "$(echo "$file" | sed -E 's/\.jpeg$/.jpg/')"
 done
 \end{lstlisting}
 \end{block}
