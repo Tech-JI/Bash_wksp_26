@@ -22,7 +22,7 @@ $ some_command some_file.txt -o 10 --long-option
     \tt{some\_file.txt}    & Argument to \tt{some\_command} \\
     \tt{-o}              & short option(flag) starts with \tt{-} \\
     \tt{10}               & Argument to \tt{-o}\\
-    \tt{--long-option}        & long option(flag) starts with \tt{--} \\
+    \tt{-{}-long-option}        & long option(flag) starts with \tt{-{}-} \\
 \end{tabular}
 
 \begin{block}{}
@@ -39,8 +39,8 @@ $ ls -Rr --ignore=trash
 \begin{tabular}{ll}
     \tt{ls}             & Executable in \tt{\$PATH} \\
     \tt{-Rr}            & Two short options: \tt{-R -r} \\
-    \tt{--ignore=}      & Long option \\
-    \tt{trash}          & Argument to \tt{--ignore}
+    \tt{-{}-ignore=}      & Long option \\
+    \tt{trash}          & Argument to \tt{-{}-ignore}
 \end{tabular}
 \begin{block}{Notes}
     \begin{itemize}
