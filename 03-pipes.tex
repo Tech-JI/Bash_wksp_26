@@ -101,9 +101,6 @@ To redirect stderr, simply add a `2', and you will get \tt{2>} and \tt{2>>}. Oth
 \end{block}
 \begin{block}{}
 Besides, \tt{\&>} and \tt{\&>>} means to redirect both stdout and stderr. 
-\footnote{
-    ls \tt{>} output \tt{2>\&1} works as well. But it's a bit complicated.
-}
 \end{block}
 \end{frame}
 
@@ -194,10 +191,12 @@ Inside \tt{03-pipes/random/}:
 \begin{itemize}
     \item List all filenames containing ``FDU''
     \item List all filenames containing ``UM'' (upper and lower cases)
-        (Hint: man grep)
     \item List all filenames containing ``UM'' but not ``FDU''
         (upper and lower cases for both substrings)
 \end{itemize}
+\begin{block}{Hint}
+    \cverb|-i| to make \cverb|grep| case-insensitive, \cverb|-v| for negation.
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -207,23 +206,6 @@ $ ls | grep FDU
 $ ls | grep -i UM
 $ ls | grep -i UM | grep -i -v FDU
 \end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{xargs (Advanced)}
-
-Pipe operator connects stdout of the previous command and stdin of the next command. But what if the next command doesn't read from stdin?
-
-Try in \tt{03-pipes}: 
-\begin{lstlisting}[language=bash]
-$ echo "1 2 3" | xargs ls
-\end{lstlisting}
-\pause
-\begin{block}{Explanation}
-    	\tt{xargs} takes input from stdin and converts it into arguments for the next command. In this example, it runs \tt{ls 1 2 3}.
-        \footnote{consider why special args in \tt{find . -name "*.txt" -print0 | xargs -0 rm}}
-\end{block}
 \end{frame}
 
 \begin{frame}
