@@ -65,6 +65,12 @@ $ fruit=apple
 $ echo "The plural of $fruit is $fruits."   # Don't do this
 $ echo "The plural of $fruit is ${fruit}s." # Do this
 \end{lstlisting}
+It's a good practice to enclose variable expansion in double quotes.
+\begin{lstlisting}[language=bash]
+$ dir='milias lab reports'
+$ mkdir $dir    # Creates three folders
+$ mkdir "$dir"  # Creates one folder
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
