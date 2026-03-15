@@ -65,11 +65,12 @@ The dot is the simplest pattern:
 \end{table}
 
 \begin{example}
-    \cverb|c.t| matches \cverb|cat|, \cverb|cut|, \cverb|c t|, etc.
+    \cverb|c.t| matches \cverb|cat|, \cverb|cut|, \cverb|c t|, etc, but not
+    \cverb|ct| or \cverb|chat|.
 \end{example}
 
 \begin{block}{Note}
-    \cverb|\.| matches a literal dot. Same goes for \cverb|\(|, \cverb|\[|, etc.
+    \cverb|\.| matches a literal dot.
 \end{block}
 \end{frame}
 
@@ -150,8 +151,9 @@ the character before or after it.
 
 \begin{example}
     \begin{itemize}
-        \item \cverb|^$| matches an empty string only
-        \item \cverb|vsky$| matches russian names
+        \item \cverb|^$| matches an empty string only \\
+	\item \cverb|^https?://| matches http or https urls \\
+        \item \cverb|vsky$| matches russian names \\
     \end{itemize}
 \end{example}
 \end{frame}
@@ -177,7 +179,10 @@ What strings does this regex match? \newline
 \begin{frame}[fragile]
 \frametitle{Quiz: Does it match?}
 Construct a regex that matches \cverb|I'm from SJTU|, \cverb|I'm from SJTUJI|, and \cverb|I'm from SJTUGC|.
-% I'm from SJTU(JI|GC)?
+\pause
+\begin{block}{Solution}
+\cverb!I'm from SJTU(JI|GC)?!
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -249,10 +254,7 @@ Enter \cverb|sed|, a program specifically designed for string replacement.
 \frametitle{Find and replace with \tt{sed}}
 \cverb|sed| is a powerful tool for transforming text.
 \footnote{For Mac users, this may be called \tt{gsed}.}
-We will be using one very specific syntax for substitution:\footnote{
-    When the pattern/replacement contains slashes, you can use things like
-    \tt{!} and \tt{,} as delimiters.
-}
+We will be using one very specific syntax for substitution:
 \begin{lstlisting}[language=bash]
 $ COMMAND | sed -E 's/FIND/REPLACE/FLAGS'
 $ sed -E 's/FIND/REPLACE/FLAGS' FILE
@@ -260,15 +262,29 @@ $ sed -E 's/FIND/REPLACE/FLAGS' FILE
 \cverb|-E| again stands for Extended regex, and flags are optional.
 This command redacts all the IPv4 addresses in the file \tt{ipv4}:
 \begin{lstlisting}[language=bash]
-$ sed -E 's/([0-9]{1,3}\.){3}[0-9]{1,3}/redacted/g' ipv4
+$ sed -E 's/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/redacted/g' ipv4
+$ sed -E 's/([0-9]+\.){3}[0-9]+/redacted/g' ipv4  # shorter
 \end{lstlisting}
-\begin{block}{Observe}
-    What will happen without the \cverb|g| at the end?
+\begin{block}{Note}
+You can save the output with redirection:
+\begin{lstlisting}[language=bash]
+$ sed -E 's/([0-9]+\.){3}[0-9]+/redacted/g' ipv4 > ipv4_redacted
+\end{lstlisting}
+Use the \cverb|-i| flag to modify the input file:
+\begin{lstlisting}[language=bash]
+$ sed -E 's/([0-9]+\.){3}[0-9]+/redacted/g' ipv4 > ipv4  # BAD
+$ sed -i -E 's/([0-9]+\.){3}[0-9]+/redacted/g' ipv4  # GOOD
+\end{lstlisting}
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{The \texttt{/g} flag}
+Observe what happens when we remove the \cverb|g| at the end in the previous
+example.
+\begin{lstlisting}[language=bash]
+$ sed -E 's/([0-9]+\.){3}[0-9]+/redacted/g' ipv4
+\end{lstlisting}
 \cverb|sed| by default changes only the first occurrence on each line.
 To change every occurrence, use the \cverb|/g| flag for global replacement.
 \end{frame}
@@ -277,7 +293,7 @@ To change every occurrence, use the \cverb|/g| flag for global replacement.
 \frametitle{Capturing groups}
 \textbf{Capturing groups} are a GNU extention to POSIX ERE.
 A capturing group, or simply \textbf{group}, is a pattern inside
-parentheses that mark a region of text that can be used later.
+\cverb|()| that marks a region of text that can be used later.
 \newline \newline
 It can be accessed with a respective \textbf{backreference} which looks like
 \cverb|\1|, \cverb|\2|, up to \cverb|\9|, where \cverb|\1| is the first group,
@@ -291,7 +307,9 @@ When nested, the position of \cverb|(| determines order, so the outside group is
 \frametitle{Capturing groups with \tt{sed}}
 What if you only want to redact the subnet (i.e. last part) of the IP addresses?
 \begin{lstlisting}[language=bash]
-$ sed -E 's/(([0-9]{1,3}\.){3})[0-9]{1,3}/\1xxx/g' ipv4
+$ sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\1.\2.\3.xxx/g' ipv4
+$ sed -E 's/([0-9]+\.[0-9]+\.[0-9]+\.)[0-9]+/\1xxx/g' ipv4
+$ sed -E 's/(([0-9]+\.){3})[0-9]+/\1xxx/g' ipv4
 \end{lstlisting}
 \begin{block}{Observation}
     IP addresses like \cverb|192.168.1.1| become \cverb|192.168.1.xxx|
