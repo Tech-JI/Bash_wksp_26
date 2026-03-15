@@ -283,7 +283,7 @@ $ sed -i -E 's/([0-9]+\.){3}[0-9]+/redacted/g' ipv4  # GOOD
 Observe what happens when we remove the \cverb|g| at the end in the previous
 example.
 \begin{lstlisting}[language=bash]
-$ sed -E 's/([0-9]+\.){3}[0-9]+/redacted/g' ipv4
+$ sed -E 's/([0-9]+\.){3}[0-9]+/redacted/' ipv4
 \end{lstlisting}
 \cverb|sed| by default changes only the first occurrence on each line.
 To change every occurrence, use the \cverb|/g| flag for global replacement.
