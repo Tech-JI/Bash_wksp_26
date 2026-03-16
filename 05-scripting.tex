@@ -71,6 +71,11 @@ $ dir='milias lab reports'
 $ mkdir $dir    # Creates three folders
 $ mkdir "$dir"  # Creates one folder
 \end{lstlisting}
+\begin{block}
+    
+Double quotes ensure that bash treats `\$dir' as a single word instead of performing word splitting. 
+\footnote{zsh will automatically add double quotes.}
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
