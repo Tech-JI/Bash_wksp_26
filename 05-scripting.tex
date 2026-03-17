@@ -151,7 +151,7 @@ Let's break down \textbf{\texttt{-rwxr-xr--}}:
           The owner can \textbf{R}ead, \textbf{W}rite, and e\textbf{X}ecute.
     \item \textbf{Chars 5-7 (Group):} \texttt{r-x} \\
           The group can \textbf{R}ead and e\textbf{X}ecute, but \textbf{NOT} write (\texttt{-}).
-    \item \textbf{Chars 8-10 (Others):} \texttt{r--} \\
+    \item \textbf{Chars 8-10 (Others):} \verb|r--| \\
           Everyone else can only \textbf{R}ead.
 \end{itemize}
 
@@ -181,7 +181,7 @@ So, if you see \texttt{-rwxr-xr-x}, it means the file currently has \textbf{755}
 \vspace{0.5em}
 
 \begin{block}{Quick Practice}
-What is the numeric mode for \texttt{-rw-r--r--}?
+What is the numeric mode for \verb|-rw-r--r--|?
 \pause % This adds an animation pause in Beamer!
 \newline
 \textbf{Answer:} 644 (4+2+0, 4+0+0, 4+0+0). Very common for text files!
