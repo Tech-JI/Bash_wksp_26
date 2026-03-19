@@ -132,7 +132,7 @@ $ ls -l um.sh
 \end{lstlisting}
 
 \begin{block}{Anatomy of the output}
-The most important part is the very first column: \textbf{\texttt{-rwxr-xr--}}
+The most important part is the very first column: \verb|-rwxr-xr--|
 \begin{itemize}
     \item It consists of exactly \textbf{10 characters}.
     \item It tells us the file type and who can do what.
@@ -143,7 +143,7 @@ The most important part is the very first column: \textbf{\texttt{-rwxr-xr--}}
 
 \begin{frame}[fragile]
 \frametitle{Decoding the 10 Characters}
-Let's break down \textbf{\texttt{-rwxr-xr--}}:
+Let's break down \verb|-rwxr-xr--|:
 
 \begin{itemize}
     \item \textbf{Char 1 (Type):} \texttt{-} means regular file. 
@@ -497,15 +497,10 @@ $ echo "$message"
 \end{lstlisting}
 \begin{block}{Note}
 Quotes inside command substitution are isolated from the outside.
-\begin{lstlisting}[language=bash]
-# Replace underscores in filename with spaces
-$ for file in *; do
-$     mv "$file" "$(echo "$file" | sed -E 's/_/ /g')"
-$ done
-\end{lstlisting}
-Syntax highlighting here is WRONG. We don't escape the quotes in
-\cverb|echo "$file"| because command substitution isolates it from the outside
-double quotes.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{command.png}
+\end{figure}
 \end{block}
 \end{frame}
 
@@ -558,7 +553,7 @@ done
 \frametitle{Environment Setup: \texttt{\textasciitilde/.bashrc}}
 \texttt{\textasciitilde/.bashrc} is a script that runs automatically every time you open a new interactive terminal. 
 \newline \newline
-It is the perfect place to set environment variables and \textbf{aliases} (custom shortcuts).
+It is the perfect place to set environment variables and \textbf{aliases} (custom name).
 \begin{lstlisting}[language=bash]
 # Edit your ~/.bashrc
 $ nano ~/.bashrc

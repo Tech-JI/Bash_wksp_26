@@ -124,8 +124,8 @@
     \verb|$var|         & access variable                           \\
     \verb|export V=val| & expose variable to child procs            \\
     \verb|$()|          & output of command substitution            \\
-    \tt{""}             & double quote (allows expansion)           \\
-    \tt{''}             & single quote (literal string)             \\
+    \tt{""}             & expand variable but prevent word splitting and globbing\\
+    \tt{''}             & literal string                            \\
     \tt{./script.sh}    & execute in subshell (needs \tt{+x})       \\
     \tt{source script.sh}& execute in current shell                 \\
     \verb|c1 && c2|     & run c2 if c1 succeeds (exit 0)            \\
